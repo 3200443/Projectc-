@@ -14,11 +14,11 @@ class Parti
 		Parti();
 		~Parti();
 		std::string get_nom()const;
-		std::set<std::string>& get_lobby() const;
-		bool operator<(const Parti&)const;
+		std::set<std::string> get_lobby() const;
+		bool operator<(const Parti &)const;
 	private:
-		const std::string _nom;
-		const std::vector<std::string> _lobby;
+		std::string _nom;
+		std::vector<std::string> _lobby;
 		static short _id;
 
 		static const std::string nom_p[MAX_P];
