@@ -34,5 +34,5 @@ void NFederation::sondage()
 
 void NFederation::display()
 {
-	
+	printf("display_Nfederation");	
 }

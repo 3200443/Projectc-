@@ -44,7 +44,7 @@ Parti::Parti(){
         default : 
             _nom = nom_p[4];
             for(int i = 0; i < NB_LOBBY; i++)
-                _lobby.push_back(p_defaut[j][i]);
+                _lobby.push_back(p_maths[j][i]);
             break;
         }
 
@@ -75,9 +75,9 @@ const std::string Parti::p_timbre[THEME_PARTI][NB_LOBBY] =      {{"fil électriq
 const std::string Parti::p_cuisine[THEME_PARTI][NB_LOBBY] =     {{"choux","carrotte"},
                                                                 {"artichauts","poivron"},
                                                                 {"Flamenkuch","pizza"}};
-const std::string Parti::p_defaut[THEME_PARTI][NB_LOBBY] =      {{"a","A"},
-                                                                {"b","B"},
-                                                                {"c","C"}};
+const std::string Parti::p_maths[THEME_PARTI][NB_LOBBY] =      {{"Des chiffres"," Et des chiffres"},
+                                                                {"2 + x = 12","Triiigonométriiiie"},
+                                                                {"Thales","Pour ton chien"}};   // Ok j'avoue c'est nul mdrrr
 
 Parti::~Parti()
 {

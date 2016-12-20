@@ -8,9 +8,9 @@
 #include <sstream>
 
 #include "Parti.hh"
-//#include "Pays.h"
-//#include "Federation.h"
-//#include "Federation.h"
+#include "Pays.hh"
+#include "Federation.hh"
+#include "NFederation.hh"
 
 #define NB_PAYS_MAX 20
 #define MAX_P 5
@@ -56,8 +56,9 @@ int action(short sondages){
 	}
 }
 
-void mode1(const std::set<Pays> monde, float *popularite) const{
+void mode1(std::set<Pays> monde, float *popularite){
 	short sondages = 2;
+	std::string nom_user;
 	//int popularite = 50;
 
 	std::ostringstream notes;
@@ -70,39 +71,36 @@ void mode1(const std::set<Pays> monde, float *popularite) const{
     std::cin >> nom_user;
 
     // nb_tours = nb_pays
-	for(const auto& iter : monde){
+	for(auto& iter : monde){
 
-    // Vérifications
-        if(popularite[0] > 100 ) popularite[i] = 100;
-        if(popularite[0] < 0 ) popularite[i] = 0;
-
+   		// Vérifications
         for(int i = 1; i < MAX_P; i++) {
             if(popularite[i] > 1 ) popularite[i] = 1;
             if(popularite[i] < 0 ) popularite[i] = 0;
 
         }
 
-    // Affichage popularité
+    	// Affichage popularité
         std::cout << " Ta popularité est de : " << popularite[0] << " % " << std::endl;
 
         for(int i = 0; i < MAX_P; i++){
             std::cout << " Ta popularité dans le partie " <<  nom_p[i]  << " est de : " << popularite[i+1] *100 << " % " << std::endl;
         }
 
-    // Affichage info pays      // Partie | nb_habitants | ?
-		std::cout << iter.display() << std::endl;
+    	// Affichage info pays      // Partie | nb_habitants | ?
+		std::cout << iter.display() << std::endl;		// Pays = virtual
 
-    // Event
-        x = rand()%2;
+    	// Event
+        int x = rand()%2;
         if (x) event(popularite, iter);
 
 
-    // Action
+    	// Action
 		switch(action(sondages))
 		{
 			case 1:
-				sondage--;
-				iter.sondage(monde);
+				sondages--;
+				iter.sondage(monde);	// Pays = virtual
 				break;
 
 			case 2:
@@ -117,7 +115,7 @@ void mode1(const std::set<Pays> monde, float *popularite) const{
 		}
 	}
 }
-
+/*
 bool replay(){
 	char r;
 	do{
@@ -128,7 +126,8 @@ bool replay(){
 	if(r == 'o')    return true;
 	return false;
 }
-
+*/
+/*
 void jeu(const std::set<Pays> monde)const{
 	bool replay = true;
 	while(replay)
@@ -137,6 +136,7 @@ void jeu(const std::set<Pays> monde)const{
 		replay = replay();
 	}
 }
+*/
 
 void initm(std::set<Pays>& monde, float *popularite){
 	int nb_pays;
@@ -166,16 +166,19 @@ void initm(std::set<Pays>& monde, float *popularite){
 	std::cout<<"Quel difficultée ? f:Facile | n:Normale | d:difficile "<<std::endl;
 	std::cin>>r;
 
-	if(r == 'f')        popularite[] = {45,1.2,1.2,1.2,1.2};
-    else if(r == 'n')   popularite[] = {30,1,1,1,1};
-    else if(r == 'd')   popularite[] = {10,0.8,0.8,0.8,0.8};
+/** Internet **/
+/* std::array<int, 10> a = { 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 }; std::array<int, 10> b = a; std::array<int, 10> c; c.fill(5); */ 
+
+	if(r == 'f')        popularite[5] = {45, 1.2, 1.2, 1.2, 1.2};
+    else if(r == 'n')   popularite[5] = {30, 1, 1, 1, 1};
+    else if(r == 'd')   popularite[5] = {10, 0.8, 0.8, 0.8, 0.8};
     }while(r!= 'f' && r != 'n' && r != 'd');
 
 }
 
 
-int event(float *popularite, Pays iter){      // Pays iter <=> erreur possible, use template ?
-    int x = rand()%10);
+float* event(float *popularite, Pays iter){      // Pays iter <=> erreur possible, use template ?
+    int x = rand()%10;
 
        switch (x){
                 case 0 : monde[iter].modif_parti(); // Partie du pays "iter" change aléatoirement
@@ -186,7 +189,7 @@ int event(float *popularite, Pays iter){      // Pays iter <=> erreur possible, 
                     break;
 
                 default :
-                        for(int i = 0; i < 4; i++){
+                        for(int i = 0; i < 5; i++){
                             popularite[i] = popularite[i] + Interaction()[i];   // Remplis toutes les cases de la popularité
                         }
                     break;
@@ -194,12 +197,13 @@ int event(float *popularite, Pays iter){      // Pays iter <=> erreur possible, 
 
         return popularite;
 
-    }
+    
 }
 
 float* Interaction(){
     std::cout << "Il est l'heure du DididididiDiscour..." << std::endl;
-    int resultat [4]= {0,0,0,0,0};
+    float resultat [5]= {0,0,0,0,0};
+    int reponse;
 
     std::cout << " QCM " << std::endl;
 
@@ -211,7 +215,7 @@ float* Interaction(){
         std::cout << " ZarbiLand (1), Zarabiland (2), Zarbilland (3) ou Zarabilland (4) ? " << std::endl;
         std::cin >> reponse;
 
-        if(reponse = 1) resultat[0] = 5;
+        if(reponse == 1) resultat[0] = 5;
         else resultat[0] = -5;
 
         return resultat;
@@ -231,7 +235,7 @@ float* Interaction(){
 
     }
 
-    return
+    //return
 }
 
 
@@ -240,7 +244,7 @@ int main()
 {
 	srand(time(NULL)); //TODO: ENLEVER DES AUTRES FICHIERS
 	std::set<Pays> monde;
-	float popularite[4];
+	float popularite[5];
 
 	//std::vector<Parti> partis;
 

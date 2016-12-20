@@ -4,7 +4,7 @@
 #Change output_file_name.a below to your desired executible filename
 
 #Set all your object files (the object files of all the .c files in your project, e.g. main.o my_sub_functions.o )
-OBJ = maintest.o NFederation.o Federation.o Democratie.o Tyrannie.o Pays.o Parti.o
+OBJ = Demagogie.o NFederation.o Federation.o Democratie.o Tyrannie.o Pays.o Parti.o
 
 #Set any dependant header files so that if they are edited they cause a complete re-compile (e.g. main.h some_subfunctions.h some_definitions_file.h ), or leave blank
 DEPS = Parti.hh NFederation.hh Federation.hh Democratie.hh Tyrannie.hh Pays.hh

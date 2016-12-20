@@ -14,9 +14,11 @@ class Pays
 		virtual void sondage();
 		bool operator<(const Pays &)const;
 		virtual void display();
+
 	private:
 		std::string creer_nom();
 		std::map<Parti,int>creer_partis(int n);
+		
 	protected:
 		int _nbHab;
 		const std::string _nom;

@@ -19,6 +19,7 @@ void Federation::sondage()
 
 void Federation::display()
 {
+	printf("display_federation");
 	
 }
 
