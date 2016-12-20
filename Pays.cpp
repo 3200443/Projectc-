@@ -19,13 +19,26 @@ std::string Pays::creer_nom()
     std::string ligne;
     std::string contenu;
     std::ifstream fichier("nom_pays.txt", std::ios::in);
-    // Affiche nom aléatoire
-    int n = rand()%nbLignes;
-    while(i < n){
-        std::getline(fichier, contenu);
-        i++;
+    if(fichier)
+    {
+        while(std::getline(fichier, ligne)){
+            nbLignes++;
+        }
+        //retour debut fichier
+        fichier.clear();
+        fichier.seekg(0,std::ios::beg);
+        // Affiche nom aléatoire
+        int n = rand()%nbLignes;
+        while(i < n){
+            std::getline(fichier, contenu);
+            i++;
+        }
+        fichier.close();
+    }else
+    {
+        printf("ERROR le fichier de nom n'existe pas!!!\n");
+        exit(-1);
     }
-    fichier.close();
     return contenu;
 }
 ///////////////////////////////////////////////////////////////////////////////
