@@ -13,7 +13,7 @@ class Pays
 		Pays(int);
 		virtual void sondage();
 		bool operator<(const Pays &)const;
-		virtual void display();
+		virtual std::string display();
 
 	private:
 		std::string creer_nom();

@@ -12,3 +12,7 @@ Tyrannie::Tyrannie()
 {
 
 }
+std::string Tyrannie::display()
+{
+	
+}

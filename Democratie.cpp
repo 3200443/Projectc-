@@ -16,7 +16,7 @@ void Democratie::sondage()
 {}
 
 
-void Democratie::display()
+std::string Democratie::display()
 {
 	
 }

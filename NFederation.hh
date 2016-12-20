@@ -12,7 +12,7 @@ class NFederation: public Democratie, public Tyrannie
 {
 	public:
 		NFederation();
-		void display();
+		std::string display();
 		void sondage();
 	private:
 		int init();

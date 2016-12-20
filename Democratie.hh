@@ -11,6 +11,6 @@ class Democratie : virtual public Pays
 	public:
 		Democratie();
 		virtual void sondage();
-		virtual void display();
+		virtual std::string display();
 	private:
 };

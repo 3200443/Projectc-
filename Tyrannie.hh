@@ -11,5 +11,6 @@ class Tyrannie: virtual public Pays
 {
 	public:
 		Tyrannie();
+		virtual std::string display();
 	private:
 };

@@ -32,7 +32,7 @@ void NFederation::sondage()
 {}
 
 
-void NFederation::display()
+std::string NFederation::display()
 {
 	printf("display_Nfederation");	
 }
