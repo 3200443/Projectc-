@@ -88,7 +88,7 @@ void mode1(std::set<Pays> monde, float *popularite){
         }
 
     	// Affichage info pays      // Partie | nb_habitants | ?
-		std::cout << iter.display() << std::endl;		// Pays = virtual
+		std::cout << iter.display() << std::endl;		// Pays = virtual //TODO: redefinir partout la fonction display avec un const!!
 
     	// Event
         int x = rand()%2;
