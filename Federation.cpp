@@ -9,7 +9,7 @@
 
 
 Federation::Federation()
-:Democratie()
+:Pays(rand()%3+3)
 ,_id(rand()%5)
 {}
 
@@ -20,4 +20,9 @@ void Federation::sondage()
 void Federation::display()
 {
 	
+}
+
+Federation::~Federation()
+{
+
 }

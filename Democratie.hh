@@ -6,10 +6,11 @@
 
 #include "Pays.hh"
 
-class Democratie : public virtual Pays
+class Democratie : virtual public Pays
 {
 	public:
 		Democratie();
-		~Democratie();
+		virtual void sondage();
+		virtual void display();
 	private:
 };

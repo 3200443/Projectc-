@@ -10,7 +10,6 @@
 class Pays
 {
 	public:
-		Pays();
 		Pays(int);
 		virtual void sondage();
 		bool operator<(const Pays &)const;

@@ -12,3 +12,11 @@ Democratie::Democratie()
 {
 
 }
+void Democratie::sondage()
+{}
+
+
+void Democratie::display()
+{
+	
+}

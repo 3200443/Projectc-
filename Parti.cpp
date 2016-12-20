@@ -2,7 +2,7 @@
 #include <string>
 #include <list>
 #include <fstream>
-#include <set>
+#include <vector>
 #include <ctime>
 #include <cstdlib>
 
@@ -10,24 +10,42 @@
 
 
 #define NB_PARTI 4
-#define THEME_PARTI 3
+#define NB_LOBBY 2
 
 
 Parti::Parti(){
+    int j = rand()%(THEME_PARTI);
+    switch (rand()%NB_PARTI)
+    {
+        case 0 :
+            _nom = nom_p[0];
+            for(int i = 0; i < NB_LOBBY; i++)
+                _lobby.push_back(p_agressif[j][i]);
+                break;
 
-		_nom = nom_p[rand()%NB_PARTI];
+        case 1 : 
+            _nom = nom_p[1];
+            for(int i = 0; i < NB_LOBBY; i++)
+                _lobby.push_back(p_peace[j][i]);
+            break;
 
-        switch (_id){
-            case 0 : _lobby.push_back(p_agressif[rand()%(THEME_PARTI+1)]);
+         case 2 : 
+            _nom = nom_p[2];
+            for(int i = 0; i < NB_LOBBY; i++)
+                _lobby.push_back(p_timbre[j][i]);
+            break;
+
+        case 3 : 
+            _nom = nom_p[3];
+            for(int i = 0; i < NB_LOBBY; i++)
+                _lobby.push_back(p_cuisine[j][i]);
                 break;
-            case 1 : _lobby = p_peace(rand()%THEME_PARTI);
-                break;
-            case 2 : _lobby = p_timbre(rand()%THEME_PARTI);
-                break;
-            case 3 : _lobby = p_cuisine(rand()%THEME_PARTI);
-                break;
-            default : _lobby = p_defaut(rand()%THEME_PARTI);
-                break;
+
+        default : 
+            _nom = nom_p[4];
+            for(int i = 0; i < NB_LOBBY; i++)
+                _lobby.push_back(p_defaut[j][i]);
+            break;
         }
 
 }
@@ -37,14 +55,31 @@ bool Parti::operator<(const Parti & p)const{
 std::string Parti::get_nom()const{
 	return this->_nom;
 }
-std::set<std::string> Parti::get_lobby() const{
+std::vector<std::string> Parti::get_lobby() const{
 	return this->_lobby;
 }
-Parti::_id 	= 0;
-Parti::nom_p = {"agressif","peace","timbré","cuisine"};
-Parti::p_agressif = {"AK","grenades"}{"bombe","mines"}{"lapins","chasse"};
-Parti::p_peace = {"fleurs","chatons"}{"arbres","oiseaux"}{"chihuahua","soja"};
-Parti::p_timbre = {"fil électrique","stylo bleu, juste le bleu"}{"tobogans","prise électrique"}{"cochons","papaille"};
-Parti::p_cuisine = {"choux","carrotte"}{"artichauts","poivron"}{"Flamenkuch","pizza"};
-Parti::p_defaut = {"a","A"}{"b","B"}{"c","C"};
 
+//short Parti::_id 	= 0;
+
+const std::string Parti::nom_p[MAX_P] = {"agressif","peace","timbré","cuisine","Matheux"};
+
+const std::string Parti::p_agressif[THEME_PARTI][NB_LOBBY] =    {{"AK","grenades"},
+                                                                {"bombe","mines"},
+                                                                {"lapins","chasse"}};
+const std::string Parti::p_peace[THEME_PARTI][NB_LOBBY] =       {{"fleurs","chatons"},
+                                                                {"arbres","oiseaux"},
+                                                                {"chihuahua","soja"}};
+const std::string Parti::p_timbre[THEME_PARTI][NB_LOBBY] =      {{"fil électrique","stylo bleu, juste le bleu"},
+                                                                {"tobogans","prise électrique"},
+                                                                {"cochons","papaille"}};
+const std::string Parti::p_cuisine[THEME_PARTI][NB_LOBBY] =     {{"choux","carrotte"},
+                                                                {"artichauts","poivron"},
+                                                                {"Flamenkuch","pizza"}};
+const std::string Parti::p_defaut[THEME_PARTI][NB_LOBBY] =      {{"a","A"},
+                                                                {"b","B"},
+                                                                {"c","C"}};
+
+Parti::~Parti()
+{
+    
+}

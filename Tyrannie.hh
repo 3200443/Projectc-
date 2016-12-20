@@ -7,10 +7,9 @@
 
 #include "Pays.hh"
 
-class Tyrannie: public virtual Pays
+class Tyrannie: virtual public Pays
 {
 	public:
 		Tyrannie();
-		virtual~Tyrannie();
 	private:
 };

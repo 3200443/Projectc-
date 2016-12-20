@@ -12,7 +12,6 @@ class NFederation: public Democratie, public Tyrannie
 {
 	public:
 		NFederation();
-		virtual~NFederation();
 		void display();
 		void sondage();
 	private:
