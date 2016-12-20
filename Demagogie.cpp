@@ -100,7 +100,7 @@ void mode1(std::set<Pays> monde, float *popularite){
 		{
 			case 1:
 				sondages--;
-				iter.sondage(monde);	// Pays = virtual
+				iter.sondage(monde);	// Pays = virtual TODO: redefibir la fonction sondage en consequence
 				break;
 
 			case 2:
