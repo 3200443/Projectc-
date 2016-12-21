@@ -7,9 +7,7 @@
 #include "Democratie.hh"
 
 
-Democratie::Democratie()
-:Pays(rand()%4+1)
-{
+Democratie::Democratie() :Pays(rand()%4+1){
 
 }
 void Democratie::sondage()

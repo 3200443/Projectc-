@@ -32,7 +32,7 @@ Parti::Parti(){
          case 2 : 
             _nom = nom_p[2];
             for(int i = 0; i < NB_LOBBY; i++)
-                _lobby.push_back(p_timbre[j][i]);
+                _lobby.push_back(p_zinzin[j][i]);
             break;
 
         case 3 : 
@@ -59,10 +59,10 @@ std::vector<std::string> Parti::get_lobby() const{
 	return this->_lobby;
 }
 // ======== Ajout perso ==========
-/*std::string Parti::get_nom_p() const{
-    return this->nom_p;
+std::string Parti::get_nom_p() const{
+    return *nom_p;
 }
-*/
+
 
 //short Parti::_id 	= 0;
 
@@ -74,7 +74,7 @@ const std::string Parti::p_agressif[THEME_PARTI][NB_LOBBY] =    {{"AK","grenades
 const std::string Parti::p_peace[THEME_PARTI][NB_LOBBY] =       {{"fleurs","chatons"},
                                                                 {"arbres","oiseaux"},
                                                                 {"chihuahua","soja"}};
-const std::string Parti::p_timbre[THEME_PARTI][NB_LOBBY] =      {{"fil électrique","stylo bleu, juste le bleu"},
+const std::string Parti::p_zinzin[THEME_PARTI][NB_LOBBY] =      {{"fil électrique","stylo bleu, juste le bleu"},
                                                                 {"tobogans","prise électrique"},
                                                                 {"cochons","papaille"}};
 const std::string Parti::p_cuisine[THEME_PARTI][NB_LOBBY] =     {{"choux","carrotte"},

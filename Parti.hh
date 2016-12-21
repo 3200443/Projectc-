@@ -17,7 +17,7 @@ class Parti
 		std::string get_nom()const;
 		std::vector<std::string> get_lobby() const;
 		bool operator<(const Parti &)const;
-		//std::string get_nom_p() const;
+		std::string get_nom_p() const;
 		
 	private:
 		std::string _nom;
@@ -27,7 +27,7 @@ class Parti
 		static const std::string nom_p[MAX_P];
 		static const std::string p_agressif[THEME_PARTI][2];
 		static const std::string p_peace[THEME_PARTI][2];
-		static const std::string p_timbre[THEME_PARTI][2];
+		static const std::string p_zinzin[THEME_PARTI][2];
 		static const std::string p_cuisine[THEME_PARTI][2];
 		static const std::string p_maths[THEME_PARTI][2];
 };

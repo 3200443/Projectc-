@@ -59,7 +59,8 @@ int action(short sondages){
 float* Interaction(){
     std::cout << "Il est l'heure du DididididiDiscour..." << std::endl;
     float resultat [5]= {0,0,0,0,0};
-    int reponse;
+    int reponse = -1;
+    std::string tampon;
 
     std::cout << " QCM " << std::endl;
 
@@ -67,7 +68,11 @@ float* Interaction(){
 
     if(question == 1) {
 
-        std::cout << " Le quel de ces pays n'existe pas dans ce jeu" << std::endl;
+        std::cout << " Jeu general " << std::endl;
+        std::cout << " Appuyez sur une touche quand vous êtes pret " << std::endl;
+    	std::cin >> tampon;
+
+    	std::cout << " Le quel de ces pays n'existe pas dans ce jeu" << std::endl;
         std::cout << " ZarbiLand (1), Zarabiland (2), Zarbilland (3) ou Zarabilland (4) ? " << std::endl;
         std::cin >> reponse;
 
@@ -79,7 +84,7 @@ float* Interaction(){
 
 
     else if (question == 2){
-        std::cout << " Jeu pour le partie agressif " << std::endl;
+        std::cout << " Jeu pour le parti agressif " << std::endl;
 
         /**
             bouton va apparaitre aléatoirement sur la fenetre pour un temps court et une taille aléatoire,
@@ -90,7 +95,53 @@ float* Interaction(){
 
 
     }
+    else if(question == 3){
+    	
 
+    	std::cout << " Jeu pour le parti peace " << std::endl;
+    	std::cout << " Appuyez sur une touche quand vous êtes pret " << std::endl;
+    	std::cin >> tampon;
+
+    	std::cout << " Combien de 'z' sont présent dans le mot qui va suivre " << std::endl;
+    	std::cout << " zz2z2zzzzzzzz22zzzzz2zzz222zzzz " << std::endl;
+    	 
+		std::cout<< "début" << std::endl;
+		for(int i = 0; i < 2000000000; i++){	// environ 6 sec
+			std::cin >> reponse;	
+		}
+
+    	if(reponse = 24) resultat[1] = 5;
+    	return resultat;
+    }
+
+    else if(question == 3){
+    	bool ToF = false;
+
+    	std::cout << " Jeu pour le parti zinzin " << std::endl;
+    	std::cout << " Appuyez sur une touche quand vous êtes pret " << std::endl;
+    	std::cin >> tampon;
+
+    	std::cout << " Voici une liste d'objets, vous devez en mettre 2 ensembles de la forme suivante : 45 pour les objets 4 et 5 par exemple. Vous avez 2 essais  " << std::endl;
+    	std::cout << " Pommeau de douche(1), Stylo bleu(2), Regle graduee(3), Lance-flamme(4), Flute a bec(5), Ballon de foot(6), Fourchette(7)" << std::endl;
+
+    	for(int i =0; i < 2; i++){
+    		std::cin >> reponse;
+    		if(reponse == 12 || reponse == 21){
+    			ToF = true;
+    			std::cout << "Gagne" << std::endl;
+    			resultat [2] = 5;
+    			return resultat;
+    		} 
+    		std::cout << "Rate" << std::endl;
+    	}
+
+    	std::cout << "C'etait simple.. fallait mettre 12 ! Tous les autres sont des objets que tu avais au collège !" << std::endl;
+    	return resultat;
+    	
+
+
+
+    }
     //return
 }
 
@@ -141,13 +192,14 @@ void mode1(std::set<Pays> monde, float *popularite){
 
     	// Affichage popularité
         std::cout << " Ta popularité est de : " << popularite[0] << " % " << std::endl;
-/*
+
+/* // POURQUOI GETNOM_P SA GALERE SERIEUX
         for(int i = 0; i < MAX_P; i++){
             std::cout << " Ta popularité dans le partie " <<  get_nom_p[i]  << " est de : " << popularite[i+1] *100 << " % " << std::endl;
         }
 */
     	// Affichage info pays      // Partie | nb_habitants | ?
-		std::cout << iter.display() << std::endl;		// Pays = virtual //TODO: redefinir partout la fonction display avec un const!!
+		std::cout << iter.display() << std::endl;	
 
     	// Event
         int x = rand()%2;
