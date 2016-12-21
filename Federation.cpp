@@ -17,7 +17,7 @@ void Federation::sondage()
 {}
 
 
-std::string Federation::display()
+std::string Federation::display() const
 {
 	printf("display_federation");
 	

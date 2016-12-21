@@ -12,7 +12,7 @@ Tyrannie::Tyrannie()
 {
 
 }
-std::string Tyrannie::display()
+std::string Tyrannie::display() const
 {
 	
 }

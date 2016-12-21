@@ -56,12 +56,71 @@ int action(short sondages){
 	}
 }
 
+float* Interaction(){
+    std::cout << "Il est l'heure du DididididiDiscour..." << std::endl;
+    float resultat [5]= {0,0,0,0,0};
+    int reponse;
+
+    std::cout << " QCM " << std::endl;
+
+    int question = rand()%10;
+
+    if(question == 1) {
+
+        std::cout << " Le quel de ces pays n'existe pas dans ce jeu" << std::endl;
+        std::cout << " ZarbiLand (1), Zarabiland (2), Zarbilland (3) ou Zarabilland (4) ? " << std::endl;
+        std::cin >> reponse;
+
+        if(reponse == 1) resultat[0] = 5;
+        else resultat[0] = -5;
+
+        return resultat;
+    }
+
+
+    else if (question == 2){
+        std::cout << " Jeu pour le partie agressif " << std::endl;
+
+        /**
+            bouton va apparaitre aléatoirement sur la fenetre pour un temps court et une taille aléatoire,
+            si click, score++ ;
+            => avoir un score d'une certaine valeur
+
+        **/
+
+
+    }
+
+    //return
+}
+
+float* event(float *popularite, Pays iter, std::set<Pays> monde){      // Pays iter <=> erreur possible, use template ?
+    int x = rand()%10;
+/*
+       switch (x){
+                case 0 : monde.find(iter).modif_parti();	//monde[iter].modif_parti(); // Partie du pays "iter" change aléatoirement // use "monde.erase()" pour remplacer
+                    break;
+                case 1 : monde[iter].cataclysme();  // nb_habitant pays "iter" diminue
+                    break;
+                case 2 : monde[iter].babyboom();    // nb_habitant pays "iter" augmente
+                    break;
+
+                default :
+                        for(int i = 0; i < 5; i++){
+                            popularite[i] = popularite[i] + Interaction()[i];   // Remplis toutes les cases de la popularité
+                        }
+                    break;
+        }
+*/
+        return popularite;    
+}
+
 void mode1(std::set<Pays> monde, float *popularite){
 	short sondages = 2;
 	std::string nom_user;
 	//int popularite = 50;
 
-	std::ostringstream notes;
+	std::ostringstream notes;printf("##########");
 	notes.str("");
 
 
@@ -83,16 +142,16 @@ void mode1(std::set<Pays> monde, float *popularite){
     	// Affichage popularité
         std::cout << " Ta popularité est de : " << popularite[0] << " % " << std::endl;
 
-        for(int i = 0; i < MAX_P; i++){
+     /*   for(int i = 0; i < MAX_P; i++){
             std::cout << " Ta popularité dans le partie " <<  nom_p[i]  << " est de : " << popularite[i+1] *100 << " % " << std::endl;
         }
-
+*/
     	// Affichage info pays      // Partie | nb_habitants | ?
 		std::cout << iter.display() << std::endl;		// Pays = virtual //TODO: redefinir partout la fonction display avec un const!!
 
     	// Event
         int x = rand()%2;
-        if (x) event(popularite, iter);
+        if (x) event(popularite, iter, monde);
 
 
     	// Action
@@ -100,7 +159,7 @@ void mode1(std::set<Pays> monde, float *popularite){
 		{
 			case 1:
 				sondages--;
-				iter.sondage(monde);	// Pays = virtual TODO: redefibir la fonction sondage en consequence
+				//iter.sondage(monde);	// Pays = virtual TODO: redefibir la fonction sondage en consequence
 				break;
 
 			case 2:
@@ -144,8 +203,9 @@ void initm(std::set<Pays>& monde, float *popularite){
 
 	std::cout<<"Creation du monde"<<std::endl;
 	do{
-		std::cout<<"Nombre de pays? (" << NB_PAYS_MAX <<" max)"<<std::endl;
-		std::cin>>nb_pays;
+		std::cout << "Nombre de pays? (" << NB_PAYS_MAX <<" max)"<<std::endl;
+		std::cin >> nb_pays;	printf("##########");
+
 	}while(nb_pays > NB_PAYS_MAX || nb_pays <1);
 
 	while(monde.size() < nb_pays){
@@ -163,80 +223,32 @@ void initm(std::set<Pays>& monde, float *popularite){
 	}
 
 	do {
-	std::cout<<"Quel difficultée ? f:Facile | n:Normale | d:difficile "<<std::endl;
-	std::cin>>r;
+		std::cout<<"Quel difficultée ? f:Facile | n:Normale | d:difficile "<<std::endl;
+		std::cin>>r;
 
-/** Internet **/
-/* std::array<int, 10> a = { 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 }; std::array<int, 10> b = a; std::array<int, 10> c; c.fill(5); */ 
+		if(r == 'f'){       
+			popularite[0] = 45;
+			for(int i = 1; i < 5; i++)
+				popularite[i] = 1.2;
+		}
 
-	if(r == 'f')        popularite[5] = {45, 1.2, 1.2, 1.2, 1.2};
-    else if(r == 'n')   popularite[5] = {30, 1, 1, 1, 1};
-    else if(r == 'd')   popularite[5] = {10, 0.8, 0.8, 0.8, 0.8};
+  		else if(r == 'n'){
+			popularite[0] = 30;
+			for(int i = 1; i < 5; i++)
+				popularite[i] = 1;
+    	}
+
+   		else if(r == 'd'){
+    		popularite[0] = 10;
+			for(int i = 1; i < 5; i++)
+				popularite[i] = 0.8;
+   		}   
+
     }while(r!= 'f' && r != 'n' && r != 'd');
-
 }
 
 
-float* event(float *popularite, Pays iter){      // Pays iter <=> erreur possible, use template ?
-    int x = rand()%10;
 
-       switch (x){
-                case 0 : monde[iter].modif_parti(); // Partie du pays "iter" change aléatoirement
-                    break;
-                case 1 : monde[iter].cataclysme();  // nb_habitant pays "iter" diminue
-                    break;
-                case 2 : monde[iter].babyboom();    // nb_habitant pays "iter" augmente
-                    break;
-
-                default :
-                        for(int i = 0; i < 5; i++){
-                            popularite[i] = popularite[i] + Interaction()[i];   // Remplis toutes les cases de la popularité
-                        }
-                    break;
-        }
-
-        return popularite;
-
-    
-}
-
-float* Interaction(){
-    std::cout << "Il est l'heure du DididididiDiscour..." << std::endl;
-    float resultat [5]= {0,0,0,0,0};
-    int reponse;
-
-    std::cout << " QCM " << std::endl;
-
-    int question = rand()%10;
-
-    if(question == 1) {
-
-        std::cout << " Le quel de ces pays n'existe pas dans ce jeu" << std::endl;
-        std::cout << " ZarbiLand (1), Zarabiland (2), Zarbilland (3) ou Zarabilland (4) ? " << std::endl;
-        std::cin >> reponse;
-
-        if(reponse == 1) resultat[0] = 5;
-        else resultat[0] = -5;
-
-        return resultat;
-    }
-
-
-    else if (question == 2){
-        std::cout << " Jeu pour le partie agressif " << std::endl;
-
-        /**
-            bouton va apparaitre aléatoirement sur la fenetre pour un temps court et une taille aléatoire,
-            si click, score++ ;
-            => avoir un score d'une certaine valeur
-
-        **/
-
-
-    }
-
-    //return
-}
 
 
 

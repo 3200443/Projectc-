@@ -74,7 +74,11 @@ void Pays::sondage()
 
 }
 ///////////////////////////////////////////////////////////////////////////////
-std::string Pays::display()
+std::string Pays::display() const
 {
-
+    /*
+    for(const auto& it : _partis){{
+         std::cout << "Parti : " << it->first << " Nombre : " << it->second << std::endl;
+    }
+    */
 }

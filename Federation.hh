@@ -14,7 +14,7 @@ class Federation : public Democratie
 	public:
 		Federation();
 		virtual ~Federation();
-		std::string display();
+		std::string display() const;
 		void sondage();
 	private:
 		const int _id;
