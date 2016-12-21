@@ -23,9 +23,9 @@ int NFederation::init()
 	}
 	return 4;
 }
-NFederation::NFederation()
-:Pays(1+init())
-{}
+NFederation::NFederation() : Pays(1+init()){
+	
+}
 
 
 void NFederation::sondage()

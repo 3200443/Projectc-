@@ -58,6 +58,11 @@ std::string Parti::get_nom()const{
 std::vector<std::string> Parti::get_lobby() const{
 	return this->_lobby;
 }
+// ======== Ajout perso ==========
+/*std::string Parti::get_nom_p() const{
+    return this->nom_p;
+}
+*/
 
 //short Parti::_id 	= 0;
 

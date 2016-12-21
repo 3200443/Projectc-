@@ -6,7 +6,6 @@
 #include <ctime>
 #include <cstdlib>
 #include <sstream>
-#include <cassert>
 
 #include "Parti.hh"
 #include "Pays.hh"
@@ -92,11 +91,11 @@ float* Interaction(){
 
     }
 
-    return resultat; //TODO: wtf??
+    //return
 }
 
 float* event(float *popularite, Pays iter, std::set<Pays> monde){      // Pays iter <=> erreur possible, use template ?
-    //int x = rand()%10;
+    int x = rand()%10;
 /*
        switch (x){
                 case 0 : monde.find(iter).modif_parti();	//monde[iter].modif_parti(); // Partie du pays "iter" change aléatoirement // use "monde.erase()" pour remplacer
@@ -142,9 +141,9 @@ void mode1(std::set<Pays> monde, float *popularite){
 
     	// Affichage popularité
         std::cout << " Ta popularité est de : " << popularite[0] << " % " << std::endl;
-
-     /*   for(int i = 0; i < MAX_P; i++){
-            std::cout << " Ta popularité dans le partie " <<  nom_p[i]  << " est de : " << popularite[i+1] *100 << " % " << std::endl;
+/*
+        for(int i = 0; i < MAX_P; i++){
+            std::cout << " Ta popularité dans le partie " <<  get_nom_p[i]  << " est de : " << popularite[i+1] *100 << " % " << std::endl;
         }
 */
     	// Affichage info pays      // Partie | nb_habitants | ?
@@ -199,24 +198,25 @@ void jeu(const std::set<Pays> monde)const{
 */
 
 void initm(std::set<Pays>& monde, float *popularite){
-	int nb_pays;
+	int nb_pays = 5;
 	char r;
+	std::string test;
 
 	std::cout<<"Creation du monde"<<std::endl;
 	do{
 		std::cout << "Nombre de pays? (" << NB_PAYS_MAX <<" max)"<<std::endl;
-		std::cin >> nb_pays;	printf("##########");
+		std::cin >> nb_pays;
 
 	}while(nb_pays > NB_PAYS_MAX || nb_pays <1);
-	assert(nb_pays>0);
-	while(monde.size() < (unsigned)nb_pays){
+
+	while(monde.size() < nb_pays){
 		switch(rand()%2)
 		{
 			case(0):
-				monde.insert(Federation());
+				monde.insert(Federation());std::cout << 0 <<std::endl;	// Sa bloque ici :/
 				break;
 			case(1):
-				monde.insert(NFederation());
+				monde.insert(NFederation());std::cout << 1 <<std::endl;
 				break;
 			default:
 				std::cout<<"Erreur création dans le monde"<<std::endl;
