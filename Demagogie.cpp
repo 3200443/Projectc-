@@ -6,6 +6,7 @@
 #include <ctime>
 #include <cstdlib>
 #include <sstream>
+#include <cassert>
 
 #include "Parti.hh"
 #include "Pays.hh"
@@ -91,11 +92,11 @@ float* Interaction(){
 
     }
 
-    //return
+    return resultat; //TODO: wtf??
 }
 
 float* event(float *popularite, Pays iter, std::set<Pays> monde){      // Pays iter <=> erreur possible, use template ?
-    int x = rand()%10;
+    //int x = rand()%10;
 /*
        switch (x){
                 case 0 : monde.find(iter).modif_parti();	//monde[iter].modif_parti(); // Partie du pays "iter" change aléatoirement // use "monde.erase()" pour remplacer
@@ -207,8 +208,8 @@ void initm(std::set<Pays>& monde, float *popularite){
 		std::cin >> nb_pays;	printf("##########");
 
 	}while(nb_pays > NB_PAYS_MAX || nb_pays <1);
-
-	while(monde.size() < nb_pays){
+	assert(nb_pays>0);
+	while(monde.size() < (unsigned)nb_pays){
 		switch(rand()%2)
 		{
 			case(0):
