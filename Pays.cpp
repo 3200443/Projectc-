@@ -63,6 +63,7 @@ Pays::Pays(int n)
   	{
     	_nbHab+= iter.second;
   	}
+    //std::cout<<"pays cree"<<std::endl;
 }
 ///////////////////////////////////////////////////////////////////////////////
 bool Pays::operator<(const Pays & p) const

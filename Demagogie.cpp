@@ -256,15 +256,17 @@ void initm(std::set<Pays>& monde, float *popularite){
 		std::cin >> nb_pays;
 
 	}while(nb_pays > NB_PAYS_MAX || nb_pays <1);
+	//std::cout <<"?"<<std::endl;
 	assert(nb_pays>0);
+	//std::cout <<"?"<<std::endl;
 	while(monde.size() < (unsigned)nb_pays){
 		switch(rand()%2)
 		{
 			case(0):
-				monde.insert(Federation());std::cout << 0 <<std::endl;	// Sa bloque ici :/
+				monde.insert(Federation());//std::cout << 0 <<std::endl;	// Sa bloque ici :/
 				break;
 			case(1):
-				monde.insert(NFederation());std::cout << 1 <<std::endl;
+				monde.insert(NFederation());//std::cout << 1 <<std::endl;
 				break;
 			default:
 				std::cout<<"Erreur création dans le monde"<<std::endl;

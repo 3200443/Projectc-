@@ -9,13 +9,12 @@
 #include "Parti.hh"
 
 
-#define NB_PARTI 4
 #define NB_LOBBY 2
 
 
 Parti::Parti(){
     int j = rand()%(THEME_PARTI);
-    switch (rand()%NB_PARTI)
+    switch (rand()%MAX_P)
     {
         case 0 :
             _nom = nom_p[0];
@@ -46,7 +45,7 @@ Parti::Parti(){
             for(int i = 0; i < NB_LOBBY; i++)
                 _lobby.push_back(p_maths[j][i]);
             break;
-        }
+    }
 
 }
 bool Parti::operator<(const Parti & p)const{
