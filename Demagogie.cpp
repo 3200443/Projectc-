@@ -107,7 +107,6 @@ int* Interaction(){
 
 			std::cout<< "début" << std::endl;
 			for(int i = 0; i < 2000000000; i++){	// environ 6 sec
-				
 			}
 			std::cout << "Réponse ? " << std::endl;
 			std::cin >> reponse;
@@ -141,7 +140,6 @@ int* Interaction(){
     		std::cout << "ou pas"<<std::endl;
     		return resultat;
     }
-    //return
 }
 
 float* event(float *popularite, Pays iter, std::set<Pays> monde){      // Pays iter <=> erreur possible, use template ?

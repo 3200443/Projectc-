@@ -5,6 +5,7 @@
 #include <vector>
 #include <ctime>
 #include <cstdlib>
+#include <sstream>
 
 #include "Parti.hh"
 
@@ -14,7 +15,9 @@
 
 Parti::Parti(){
     int j = rand()%(THEME_PARTI);
-    switch (rand()%MAX_P)
+    int k = rand()%MAX_P;
+    //std::cout<<"j:" << j <<" k:"<<k<<std::endl;
+    switch (k)
     {
         case 0 :
             _nom = nom_p[0];
@@ -58,8 +61,11 @@ std::vector<std::string> Parti::get_lobby() const{
 	return this->_lobby;
 }
 // ======== Ajout perso ==========
-std::string Parti::get_nom_p() const{
-    return *nom_p;
+std::string Parti::display() const
+{
+    std::ostringstream oss;
+    oss << "Parti : " << this->_nom << std::endl;
+    return oss.str();
 }
 
 

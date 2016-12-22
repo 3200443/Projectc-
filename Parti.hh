@@ -17,7 +17,7 @@ class Parti
 		std::string get_nom()const;
 		std::vector<std::string> get_lobby() const;
 		bool operator<(const Parti &)const;
-		std::string get_nom_p() const;
+		std::string display() const;
 		
 	private:
 		std::string _nom;
