@@ -79,12 +79,14 @@ void Pays::sondage()
 std::string Pays::display() const
 {
     std::ostringstream oss;
+    oss <<  std::endl;
     oss << "Pays : " << this->_nom << std::endl;
-    oss << "Nombre d'habitants : " << this->_nbHab << std::endl<<std::endl;
+    oss << "Nombre d'habitants : " << this->_nbHab << std::endl;
     for(const auto& it : _partis)
     {
          oss <<it.first.display();
-         oss << "Nombre d'adherants : " << it.second << std::endl << std::endl;
+         oss << "Nombre d'adherants : " << it.second << std::endl;
     }
+    oss << std::endl;
     return oss.str();
 }
