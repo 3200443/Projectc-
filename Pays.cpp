@@ -85,7 +85,7 @@ std::string Pays::display() const
     for(const auto& it : _partis)
     {
          oss <<it.first.display();
-         oss << "Nombre d'adherants : " << it.second << std::endl;
+         oss << "Nombre d'adherants : " << it.second << std::endl; //TODO: un peu craqué d avoir cette information, par contre ca en serait une bonne pour sondage
     }
     oss << std::endl;
     return oss.str();
