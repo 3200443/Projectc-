@@ -56,91 +56,86 @@ int action(short sondages){
 	}
 }
 
-float* Interaction(){
+int Interaction(){
     std::cout << "Il est l'heure du DididididiDiscour..." << std::endl;
-    float resultat [5]= {0,0,0,0,0};
+    int resultat = 0;
     int reponse = -1;
     std::string tampon;
+    //bool ToF = false;
 
     std::cout << " QCM " << std::endl;
 
-    int question = rand()%10;
+    int question;
+    switch(question = rand()%10)
+    {
+    	case 1:
+	        std::cout << " Jeu general " << std::endl;
+	        std::cout << " Appuyez sur une touche quand vous êtes pret " << std::endl;
+	    	std::cin >> tampon;
 
-    if(question == 1) {
+	    	std::cout << " Le quel de ces pays n'existe pas dans ce jeu" << std::endl;
+	        std::cout << " ZarbiLand (1), Zarabiland (2), Zarbilland (3) ou Zarabilland (4) ? " << std::endl;
+	        std::cin >> reponse;
 
-        std::cout << " Jeu general " << std::endl;
-        std::cout << " Appuyez sur une touche quand vous êtes pret " << std::endl;
-    	std::cin >> tampon;
+	        if(reponse == 1) resultat = 1;
+	        else resultat = -1;
 
-    	std::cout << " Le quel de ces pays n'existe pas dans ce jeu" << std::endl;
-        std::cout << " ZarbiLand (1), Zarabiland (2), Zarbilland (3) ou Zarabilland (4) ? " << std::endl;
-        std::cin >> reponse;
-
-        if(reponse == 1) resultat[0] = 5;
-        else resultat[0] = -5;
-
-        return resultat;
-    }
-
-
-    else if (question == 2){
-        std::cout << " Jeu pour le parti agressif " << std::endl;
-
-        /**
-            bouton va apparaitre aléatoirement sur la fenetre pour un temps court et une taille aléatoire,
-            si click, score++ ;
-            => avoir un score d'une certaine valeur
-
-        **/
+	        return resultat;
 
 
-    }
-    else if(question == 3){
-    	
+   		case 2:
+	        std::cout << " Jeu pour le parti agressif " << std::endl;
 
-    	std::cout << " Jeu pour le parti peace " << std::endl;
-    	std::cout << " Appuyez sur une touche quand vous êtes pret " << std::endl;
-    	std::cin >> tampon;
+	        /**
+	            bouton va apparaitre aléatoirement sur la fenetre pour un temps court et une taille aléatoire,
+	            si click, score++ ;
+	            => avoir un score d'une certaine valeur
 
-    	std::cout << " Combien de 'z' sont présent dans le mot qui va suivre " << std::endl;
-    	std::cout << " zz2z2zzzzzzzz22zzzzz2zzz222zzzz " << std::endl;
-    	 
-		std::cout<< "début" << std::endl;
-		for(int i = 0; i < 2000000000; i++){	// environ 6 sec
-			std::cin >> reponse;	
-		}
+	        **/
+	        if(reponse == 1) resultat = 2;
+	        else resultat = -2;				//TODO: placeholder!!
 
-    	if(reponse = 24) resultat[1] = 5;
-    	return resultat;
-    }
+   		case 3:
+	    	std::cout << " Jeu pour le parti peace " << std::endl;
+	    	std::cout << " Appuyez sur une touche quand vous êtes pret " << std::endl;
+	    	std::cin >> tampon;
 
-    else if(question == 3){
-    	bool ToF = false;
+	    	std::cout << " Combien de 'z' sont présent dans le mot qui va suivre " << std::endl;
+	    	std::cout << " zz2z2zzzzzzzz22zzzzz2zzz222zzzz " << std::endl;
 
-    	std::cout << " Jeu pour le parti zinzin " << std::endl;
-    	std::cout << " Appuyez sur une touche quand vous êtes pret " << std::endl;
-    	std::cin >> tampon;
+			std::cout<< "début" << std::endl;
+			for(int i = 0; i < 2000000000; i++){	// environ 6 sec
+				std::cin >> reponse;
+			}
 
-    	std::cout << " Voici une liste d'objets, vous devez en mettre 2 ensembles de la forme suivante : 45 pour les objets 4 et 5 par exemple. Vous avez 2 essais  " << std::endl;
-    	std::cout << " Pommeau de douche(1), Stylo bleu(2), Regle graduee(3), Lance-flamme(4), Flute a bec(5), Ballon de foot(6), Fourchette(7)" << std::endl;
+	    	if(reponse == 24) resultat = 3; //TODO faire directement return 3
+	    	else resultat = -3;
+	    	return resultat;
 
-    	for(int i =0; i < 2; i++){
-    		std::cin >> reponse;
-    		if(reponse == 12 || reponse == 21){
-    			ToF = true;
-    			std::cout << "Gagne" << std::endl;
-    			resultat [2] = 5;
-    			return resultat;
-    		} 
-    		std::cout << "Rate" << std::endl;
-    	}
+    	case 4:
+	    	std::cout << " Jeu pour le parti zinzin " << std::endl;
+	    	std::cout << " Appuyez sur une touche quand vous êtes pret " << std::endl;
+	    	std::cin >> tampon;
 
-    	std::cout << "C'etait simple.. fallait mettre 12 ! Tous les autres sont des objets que tu avais au collège !" << std::endl;
-    	return resultat;
-    	
+	    	std::cout << " Voici une liste d'objets, vous devez en mettre 2 ensembles de la forme suivante : 45 pour les objets 4 et 5 par exemple. Vous avez 2 essais  " << std::endl;
+	    	std::cout << " Pommeau de douche(1), Stylo bleu(2), Regle graduee(3), Lance-flamme(4), Flute a bec(5), Ballon de foot(6), Fourchette(7)" << std::endl;
 
+	    	for(int i =0; i < 2; i++){
+	    		std::cin >> reponse;
+	    		if(reponse == 12 || reponse == 21){
+	    			//ToF = true;
+	    			std::cout << "Gagne" << std::endl;
+	    			resultat = 4;
+	    			return resultat;
+	    		}
+	    		std::cout << "Rate" << std::endl;
+	    	}
 
-
+	    	std::cout << "C'etait simple.. fallait mettre 12 ! Tous les autres sont des objets que tu avais au collège !" << std::endl;
+	    	return -4;
+    	default:
+    		std::cout << "ou pas"<<std::endl;
+    		return 0;
     }
     //return
 }
