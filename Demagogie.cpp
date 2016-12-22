@@ -22,7 +22,8 @@ void note(std::ostringstream & notes){
 	std::cout<<"Veuillez entrer une note (une ligne)"<<std::endl;
 	std::string str;
 	std::cin>>str;
-	notes << str;
+	notes << str+"\n";
+	std::cout <<std::endl;
 }
 
 void afficherNote(std::ostringstream& notes){
@@ -57,9 +58,9 @@ int action(short sondages){
 	}
 }
 
-int* Interaction(){
+void Interaction(float resultat[5]){
     std::cout << "Il est l'heure du DididididiDiscour..." << std::endl;
-    int resultat[5] = {0,0,0,0,0};
+    //int resultat[5] = {0,0,0,0,0};
     int reponse = -1;
     std::string tampon;
     //bool ToF = false;
@@ -81,7 +82,7 @@ int* Interaction(){
 	        if(reponse == 1) resultat[0] = 5;
 	       // else resultat = -1;
 
-	        return resultat;
+	       break;
 
 
    		case 2:
@@ -94,8 +95,7 @@ int* Interaction(){
 
 	        **/
 	        if(reponse == 1) resultat[1] = 5;
-	       // else resultat = -2;				//TODO: placeholder!!
-	        return resultat;
+	       break;
 
    		case 3:
 	    	std::cout << " Jeu pour le parti peace " << std::endl;
@@ -106,44 +106,44 @@ int* Interaction(){
 	    	std::cout << " zz2z2zzzzzzzz22zzzzz2zzz222zzzz " << std::endl;
 
 			std::cout<< "début" << std::endl;
-			for(int i = 0; i < 2000000000; i++){	// environ 6 sec
+			for(int i = 0; i < 2000000000; i++){	// environ 6 sec //TODO: BIEN PLUS LONG QUE CA CHEZ MOI
 			}
 			std::cout << "Réponse ? " << std::endl;
 			std::cin >> reponse;
 	    	if(reponse == 24) resultat[2] = 5; //TODO faire directement return 3
 	    	//else resultat = -3;
-	    	return resultat;
+	    	break;
 
     	case 4:
 	    	std::cout << " Jeu pour le parti zinzin " << std::endl;
 	    	std::cout << " Appuyez sur une touche quand vous êtes pret " << std::endl;
-	    	std::cin >> tampon;
+	    	std::cin >> tampon;//TODO: ENTRE N EST PAS UNE TOUCHE!!!!! voir si y a pas de fonction get key
 
 	    	std::cout << " Voici une liste d'objets, vous devez en mettre 2 ensembles de la forme suivante : 45 pour les objets 4 et 5 par exemple. Vous avez 2 essais  " << std::endl;
 	    	std::cout << " Pommeau de douche(1), Stylo bleu(2), Regle graduee(3), Lance-flamme(4), Flute a bec(5), Ballon de foot(6), Fourchette(7)" << std::endl;
 
-	    	for(int i =0; i < 2; i++){
-	    		std::cin >> reponse;
-	    		if(reponse == 12 || reponse == 21){
-	    			//ToF = true;
-	    			std::cout << "Gagne" << std::endl;
-	    			resultat[3] = 5;
-	    			return resultat;
-	    		}
+    		std::cin >> reponse;
+    		if(reponse == 12 || reponse == 21){
+    			//ToF = true;
+    			std::cout << "Gagne" << std::endl;
+    			resultat[3] = 5;
+    		}else
+    		{
 	    		std::cout << "Rate" << std::endl;
-	    	}
 
-	    	std::cout << "C'etait simple.. fallait mettre 12 ! Tous les autres sont des objets que tu avais au collège !" << std::endl;
-	    	return resultat;
+		    	std::cout << "C'etait simple.. fallait mettre 12 ! Tous les autres sont des objets que tu avais au collège !" << std::endl;
+		    }
+		    break;
 
     	default:
     		std::cout << "ou pas"<<std::endl;
-    		return resultat;
     }
 }
 
-float* event(float *popularite, Pays iter, std::set<Pays> monde){      // Pays iter <=> erreur possible, use template ?
-    //int x = rand()%10;
+void event(float *popularite, Pays iter, std::set<Pays> monde){      // Pays iter <=> erreur possible, use template ?
+    //int x = rand()%10;											//CHANGE EN VOID: RETOURNER POPULARITE EST INUTILE!!!!
+    float resultat[5] = {0};
+    Interaction(resultat);
 /*
        switch (x){
                 case 0 : monde.find(iter).modif_parti();	//monde[iter].modif_parti(); // Partie du pays "iter" change aléatoirement // use "monde.erase()" pour remplacer
@@ -154,17 +154,16 @@ float* event(float *popularite, Pays iter, std::set<Pays> monde){      // Pays i
                     break;
 
                 default :*/
-                        for(int i = 0; i < 5; i++){
-                            popularite[i] = popularite[i] + Interaction()[i];   // Remplis toutes les cases de la popularité
+                        for(int i = 0; i < 5; i++){  //TODO: ce 5 me perturbe
+                            popularite[i] = popularite[i] + resultat[i];   // Remplis toutes les cases de la popularité
                         }
                    // break;
         //}
-
-        return popularite;    
 }
 
 void mode1(std::set<Pays> monde, float *popularite){
 	short sondages = 2;
+	bool verrou = false;
 	std::string nom_user;
 	//int popularite = 50;
 
@@ -174,11 +173,12 @@ void mode1(std::set<Pays> monde, float *popularite){
 
 	std::cout<<"Debut de la partie"<<std::endl;
 
-    std::cout<<"Entrer votre nom"<<std::endl;
+    std::cout << "Entrer votre nom"<<std::endl;
     std::cin >> nom_user;
-
+    std::cout << std::endl<<std::endl;
     // nb_tours = nb_pays
-	for(auto& iter : monde){
+	for(auto& iter : monde)
+	{
 
    		// Vérifications
         for(int i = 1; i < MAX_P; i++) {
@@ -204,24 +204,29 @@ void mode1(std::set<Pays> monde, float *popularite){
 
 
     	// Action
-		switch(action(sondages))
-		{
-			case 1:
-				sondages--;
-				//iter.sondage(monde);	// Pays = virtual TODO: redefibir la fonction sondage en consequence
-				break;
+    	while(!verrou)
+    	{
+			switch(action(sondages))
+			{
+				case 1:
+					sondages--;
+					//iter.sondage(monde);	// Pays = virtual TODO: redefibir la fonction sondage en consequence
+					break;
 
-			case 2:
-				note(notes);
-				break;
+				case 2:
+					note(notes);
+					break;
 
-			case 3:
-				afficherNote(notes);
-                break;
-			default: std::cout << " Aucune action" << std::endl;
-				break;
+				case 3:
+					afficherNote(notes);
+	                break;
+				default: std::cout << " Aucune action" << std::endl;
+					verrou = true;
+					break;
+			}
 		}
 	}
+	//TODO: FIN DE PARTIE ICI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!       <---------------------
 }
 /*
 bool replay(){
@@ -306,14 +311,9 @@ void initm(std::set<Pays>& monde, float *popularite){
 
 int main()
 {
-	srand(time(NULL)); //TODO: ENLEVER DES AUTRES FICHIERS
+	srand(time(NULL));
 	std::set<Pays> monde;
 	float popularite[5];
-
-	//std::vector<Parti> partis;
-
-	//**Creation des Partis**/
-	//initp(partis);
 
 	/**Creation du monde**/
 	initm(monde, popularite);
