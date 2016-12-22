@@ -19,8 +19,8 @@ void Federation::sondage()
 
 std::string Federation::display() const
 {
-	printf("display_federation");
-	
+	printf("display_federation"); //TODO: de meme???
+	return "display_federation";
 }
 
 Federation::~Federation()

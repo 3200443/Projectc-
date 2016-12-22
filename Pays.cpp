@@ -6,6 +6,7 @@
 #include <vector>
 #include <map>
 #include <cassert>
+#include <sstream>
 
 #include "Pays.hh"
 #include "Parti.hh"
@@ -48,7 +49,7 @@ std::map<Parti, int> Pays::creer_partis(int n)
 	std::map<Parti,int> partis;
 	while(partis.size() < (unsigned)n)
 	{
-		partis.insert(std::make_pair(Parti(), 1));//TODO: TESTER SIZE POUR SAVOIR SI UN NEW EST NECESSAIRE
+		partis.insert(std::make_pair(Parti(), rand()%10000+10000));//TODO: TESTER SIZE POUR SAVOIR SI UN NEW EST NECESSAIRE
 	}
 	return partis;
 }
@@ -76,9 +77,10 @@ void Pays::sondage()
 ///////////////////////////////////////////////////////////////////////////////
 std::string Pays::display() const
 {
-    /*
-    for(const auto& it : _partis){{
-         std::cout << "Parti : " << it->first << " Nombre : " << it->second << std::endl;
+    std::ostringstream oss;
+    for(const auto& it : _partis)
+    {
+         oss << "Parti : " << it.first.get_nom_p() << " Nombre : " << it.second << std::endl;
     }
-    */
+    return oss.str();
 }

@@ -16,5 +16,5 @@ void Democratie::sondage()
 
 std::string Democratie::display() const
 {
-	
+	return "";
 }

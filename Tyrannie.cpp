@@ -14,5 +14,5 @@ Tyrannie::Tyrannie()
 }
 std::string Tyrannie::display() const
 {
-	
+	return "";
 }
