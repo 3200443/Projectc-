@@ -81,7 +81,9 @@ std::string Pays::display() const
     std::ostringstream oss;
     for(const auto& it : _partis)
     {
-         oss << "Parti : " << it.first.get_nom_p() << " Nombre : " << it.second << std::endl;
+         oss << "Pays : " << this->_nom << std::endl;
+         oss << "Parti : " << it.first.get_nom_p() << std::endl;
+         oss << "Nombre d'habitants : " << it.second << std::endl;
     }
     return oss.str();
 }

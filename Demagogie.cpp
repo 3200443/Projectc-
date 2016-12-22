@@ -57,20 +57,20 @@ int action(short sondages){
 	}
 }
 
-int Interaction(){
+int* Interaction(){
     std::cout << "Il est l'heure du DididididiDiscour..." << std::endl;
-    int resultat = 0;
+    int resultat[5] = {0,0,0,0,0};
     int reponse = -1;
     std::string tampon;
     //bool ToF = false;
 
-    std::cout << " QCM " << std::endl;
 
     int question;
     switch(question = rand()%10)
     {
     	case 1:
 	        std::cout << " Jeu general " << std::endl;
+	        std::cout << " QCM " << std::endl;
 	        std::cout << " Appuyez sur une touche quand vous êtes pret " << std::endl;
 	    	std::cin >> tampon;
 
@@ -78,8 +78,8 @@ int Interaction(){
 	        std::cout << " ZarbiLand (1), Zarabiland (2), Zarbilland (3) ou Zarabilland (4) ? " << std::endl;
 	        std::cin >> reponse;
 
-	        if(reponse == 1) resultat = 1;
-	        else resultat = -1;
+	        if(reponse == 1) resultat[0] = 5;
+	       // else resultat = -1;
 
 	        return resultat;
 
@@ -93,24 +93,26 @@ int Interaction(){
 	            => avoir un score d'une certaine valeur
 
 	        **/
-	        if(reponse == 1) resultat = 2;
-	        else resultat = -2;				//TODO: placeholder!!
+	        if(reponse == 1) resultat[1] = 5;
+	       // else resultat = -2;				//TODO: placeholder!!
+	        return resultat;
 
    		case 3:
 	    	std::cout << " Jeu pour le parti peace " << std::endl;
 	    	std::cout << " Appuyez sur une touche quand vous êtes pret " << std::endl;
 	    	std::cin >> tampon;
 
-	    	std::cout << " Combien de 'z' sont présent dans le mot qui va suivre " << std::endl;
+	    	std::cout << " Combien de 'z' sont présents dans le mot qui va suivre " << std::endl;
 	    	std::cout << " zz2z2zzzzzzzz22zzzzz2zzz222zzzz " << std::endl;
 
 			std::cout<< "début" << std::endl;
 			for(int i = 0; i < 2000000000; i++){	// environ 6 sec
-				std::cin >> reponse;
+				
 			}
-
-	    	if(reponse == 24) resultat = 3; //TODO faire directement return 3
-	    	else resultat = -3;
+			std::cout << "Réponse ? " << std::endl;
+			std::cin >> reponse;
+	    	if(reponse == 24) resultat[2] = 5; //TODO faire directement return 3
+	    	//else resultat = -3;
 	    	return resultat;
 
     	case 4:
@@ -126,17 +128,18 @@ int Interaction(){
 	    		if(reponse == 12 || reponse == 21){
 	    			//ToF = true;
 	    			std::cout << "Gagne" << std::endl;
-	    			resultat = 4;
+	    			resultat[3] = 5;
 	    			return resultat;
 	    		}
 	    		std::cout << "Rate" << std::endl;
 	    	}
 
 	    	std::cout << "C'etait simple.. fallait mettre 12 ! Tous les autres sont des objets que tu avais au collège !" << std::endl;
-	    	return -4;
+	    	return resultat;
+
     	default:
     		std::cout << "ou pas"<<std::endl;
-    		return 0;
+    		return resultat;
     }
     //return
 }
@@ -152,13 +155,13 @@ float* event(float *popularite, Pays iter, std::set<Pays> monde){      // Pays i
                 case 2 : monde[iter].babyboom();    // nb_habitant pays "iter" augmente
                     break;
 
-                default :
+                default :*/
                         for(int i = 0; i < 5; i++){
                             popularite[i] = popularite[i] + Interaction()[i];   // Remplis toutes les cases de la popularité
                         }
-                    break;
-        }
-*/
+                   // break;
+        //}
+
         return popularite;    
 }
 
@@ -167,7 +170,7 @@ void mode1(std::set<Pays> monde, float *popularite){
 	std::string nom_user;
 	//int popularite = 50;
 
-	std::ostringstream notes;printf("##########");
+	std::ostringstream notes;
 	notes.str("");
 
 
@@ -187,7 +190,7 @@ void mode1(std::set<Pays> monde, float *popularite){
         }
 
     	// Affichage popularité
-        std::cout << " Ta popularité est de : " << popularite[0] << " % " << std::endl;
+        std::cout << "Ta popularité est de : " << popularite[0] << " % " << std::endl;
 
 /* // POURQUOI GETNOM_P SA GALERE SERIEUX
         for(int i = 0; i < MAX_P; i++){
