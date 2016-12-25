@@ -228,7 +228,7 @@ void mode1(std::set<Pays> monde, float *popularite){
 	}
 	//TODO: FIN DE PARTIE ICI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!       <---------------------
 }
-/*
+
 bool replay(){
 	char r;
 	do{
@@ -239,17 +239,14 @@ bool replay(){
 	if(r == 'o')    return true;
 	return false;
 }
-*/
-/*
-void jeu(const std::set<Pays> monde)const{
-	bool replay = true;
-	while(replay)
+
+void jeu(const std::set<Pays> monde , float *popularite)
+{
+	do
 	{
-		mode1(monde);
-		replay = replay();
-	}
+		mode1(monde,popularite);
+	}while(replay());
 }
-*/
 
 void initm(std::set<Pays>& monde, float *popularite){
 	int nb_pays = 5;
@@ -283,7 +280,7 @@ void initm(std::set<Pays>& monde, float *popularite){
 		std::cout<<"Quel difficultée ? f:Facile | n:Normale | d:difficile "<<std::endl;
 		std::cin>>r;
 
-		if(r == 'f'){       
+		if(r == 'f'){
 			popularite[0] = 45;
 			for(int i = 1; i < 5; i++)
 				popularite[i] = 1.2;
@@ -319,7 +316,6 @@ int main()
 	initm(monde, popularite);
 
 	/** Déroulement du jeu **/
-	mode1(monde, popularite);
-
-
+	//mode1(monde, popularite);
+	jeu(monde,popularite);
 }
