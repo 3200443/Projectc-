@@ -88,8 +88,3 @@ const std::string Parti::p_cuisine[THEME_PARTI][NB_LOBBY] =     {{"choux","carro
 const std::string Parti::p_maths[THEME_PARTI][NB_LOBBY] =      {{"Des chiffres"," Et des chiffres"},
                                                                 {"2 + x = 12","Triiigonométriiiie"},
                                                                 {"Thales","Pour ton chien"}};   // Ok j'avoue c'est nul mdrrr
-
-Parti::~Parti()
-{
-    
-}

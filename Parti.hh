@@ -13,7 +13,6 @@ class Parti
 {
 	public:
 		Parti();
-		virtual~Parti();
 		std::string get_nom()const;
 		std::vector<std::string> get_lobby() const;
 		bool operator<(const Parti &)const;

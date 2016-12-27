@@ -37,7 +37,8 @@ std::string Pays::creer_nom()
         fichier.close();
     }else
     {
-        printf("ERROR le fichier de nom n'existe pas!!!\n");
+        //printf("ERROR le fichier de nom n'existe pas!!!\n");
+        QMessageBox::information(0,"ERREUR","le fichier de nom n'existe pas!!!");
         exit(-1);
     }
     return contenu;

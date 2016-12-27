@@ -299,7 +299,7 @@ void initm(std::set<Pays>& monde, float *popularite){
    		}   
 
     }while(r!= 'f' && r != 'n' && r != 'd');
-}
+}	
 
 
 
