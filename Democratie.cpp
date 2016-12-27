@@ -18,3 +18,11 @@ std::string Democratie::display() const
 {
 	return "";
 }
+std::string Democratie::get_basic()const
+{
+	return "Poplation:" + std::to_string(_nbHab) +"\n" + "Democratie\n";
+}
+Democratie::~Democratie()
+{
+	
+}

@@ -7,7 +7,7 @@
 #include <map>
 #include <cassert>
 #include <sstream>
-
+#include <QMessageBox>
 #include "Pays.hh"
 #include "Parti.hh"
 
@@ -90,4 +90,16 @@ std::string Pays::display() const
     }
     oss << std::endl;
     return oss.str();
+}
+std::string Pays::get_nom()const
+{
+    return this->_nom;
+}
+std::string Pays::get_basic()const
+{
+    return "";
+}
+Pays::~Pays()
+{
+    
 }

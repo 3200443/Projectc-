@@ -27,3 +27,7 @@ Federation::~Federation()
 {
 
 }
+std::string Federation::get_basic()const
+{
+	return Democratie::get_basic() + "Federation:" + std::to_string(_id)+"\n";
+}

@@ -4,7 +4,7 @@
 #include "Pays.hh"
 #include "Federation.hh"
 #include "NFederation.hh"
-
+#include <QListWidget>
 #include <QMainWindow>
 
 namespace Ui {
@@ -29,6 +29,17 @@ private slots:
 
     void on_bretour2_clicked();
 
+    void on_btabnoteafficher_clicked();
+
+    void on_btnotemodifier_clicked();
+
+    void on_babandonner_clicked();
+
+    void on_pushButton_clicked();
+
+
+    void on_listWidget_itemSelectionChanged();
+
 private:
     Ui::MainWindow *ui;
 
@@ -38,9 +49,13 @@ private:
 
     std::string _nomj;
 
-    std::set<Pays> _monde;
+    std::vector<Pays*> _monde;
 
-    float popularite[5];
+    float _popularite[5];
+
+    QString _notes;
+
+    short _sondages;
 };
 
 #endif // MAINWINDOW_HH

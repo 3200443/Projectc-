@@ -11,18 +11,25 @@
 #include <sstream>
 #include <cassert>
 
+#define NB_PAYS_MAX 20
+
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->cnbpays->setValidator(new QIntValidator(2,20,this));
-    ui->cnbpays->setText("2");
+    //ui->cnbpays->setValidator(new QIntValidator(2,20,this));
+    ui->spinBox->setRange(2,NB_PAYS_MAX);
+    ui->spinBox->setValue(2);
     ui->cnomj->setText("Joueur");
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 MainWindow::~MainWindow()
 {
+    for(auto iter : _monde)
+        delete iter;
     delete ui;
 }
 
@@ -39,39 +46,50 @@ void MainWindow::on_bretour_clicked()
 
 void MainWindow::on_bjouer_clicked()
 {
-    _nbpays = ui->cnbpays->text().toInt();
+    std::set<Pays> temp;
+    Pays* p;
+    _nbpays = ui->spinBox->text().toInt();
     assert(_nbpays>0);
     assert(_nbpays <21);
-
-    while(_monde.size() < (unsigned)_nbpays){
-            switch(rand()%2)
-            {
-                case(0):
-                    _monde.insert(Federation());//std::cout << 0 <<std::endl;	// Sa bloque ici :/
-                    break;
-                case(1):
-                    _monde.insert(NFederation());//std::cout << 1 <<std::endl;
-                    break;
-                default:
-                    QMessageBox::information(0,"ERREUR","Erreur création dans le _monde");
-                    //std::cout<<"Erreur création dans le _monde"<<std::endl;
-            }
+    do
+    {
+        switch(rand()%2)
+        {
+            case(0):
+                p = new Federation;
+                break;
+            case(1):
+                p = new NFederation;
+                break;
+            default:
+                QMessageBox::information(0,"ERREUR","Erreur création dans le _monde");
+                //std::cout<<"Erreur création dans le _monde"<<std::endl;
         }
+        if( !temp.insert(*p).second )
+        {
+            delete p;
+        }else
+        {
+            _monde.push_back(p);
+        }
+    }while(_monde.size()<(unsigned)_nbpays);
+
+
     if(ui->rfacile->isChecked())
     {
-        popularite[0] = 45;
+        _popularite[0] = 45;
         for(int i = 1; i < 5; i++)
-            popularite[i] = 1.2;
+            _popularite[i] = 1.2;
     }else if(ui->rnormal->isChecked())
     {
-        popularite[0] = 30;
+        _popularite[0] = 30;
         for(int i = 1; i < 5; i++)
-            popularite[i] = 1;
+            _popularite[i] = 1;
     }else
     {
-        popularite[0] = 10;
+        _popularite[0] = 10;
         for(int i = 1; i < 5; i++)
-            popularite[i] = 0.8;
+            _popularite[i] = 0.8;
     }
     _nomj = ui->cnomj->text().toStdString();
     ui->stackedWidget->setCurrentIndex(2);
@@ -84,36 +102,34 @@ void MainWindow::on_bretour2_clicked()
 }
 
 void MainWindow::mode1(){
-    short sondages = 2;
+    _sondages = 2;
+    _nomj = ui->cnomj->text().toStdString();
 
-    std::ostringstream notes;
-    notes.str("");
+    ui->tabWidget->setCurrentIndex(0);
+    ui->lsondage->setText(QString::number(_sondages));
+    ui->progressBar->reset();
 
 
-    std::cout<<"Debut de la partie"<<std::endl;
-
-    std::cout << "Entrer votre nom"<<std::endl;
-    std::cin >> nom_user;
-    std::cout << std::endl<<std::endl;
     // nb_tours = nb_pays
-    for(auto& iter : monde)
+    for(auto& iter : _monde)
     {
+        ui->listWidget->addItem(QString::fromStdString((*iter).get_nom()));
+    }
 
-        // Vérifications
-        for(int i = 1; i < MAX_P; i++) {
-            if(popularite[i] > 1 ) popularite[i] = 1;
-            if(popularite[i] < 0 ) popularite[i] = 0;
+   // Vérifications
+   for(int i = 1; i < MAX_P; i++) {
+       if(_popularite[i] > 1 ) _popularite[i] = 1;
+       if(_popularite[i] < 0 ) _popularite[i] = 0;
+    }
+    ui->progressBar_2->setValue(_popularite[0]);
 
-        }
 
-        // Affichage popularité
-        std::cout << "Ta popularité est de : " << popularite[0] << " % " << std::endl;
 
-/* // POURQUOI GETNOM_P SA GALERE SERIEUX
-        for(int i = 0; i < MAX_P; i++){
-            std::cout << " Ta popularité dans le partie " <<  get_nom_p[i]  << " est de : " << popularite[i+1] *100 << " % " << std::endl;
-        }
-*/
+    ui->stackedWidget->setCurrentIndex(3);
+}
+/*
+
+
         // Affichage info pays      // Partie | nb_habitants | ?
         std::cout << iter.display() << std::endl;
 
@@ -146,4 +162,47 @@ void MainWindow::mode1(){
         }
     }
     //TODO: FIN DE PARTIE ICI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!       <---------------------
+}
+*/
+
+void MainWindow::on_btabnoteafficher_clicked()
+{
+    ui->ctnote->setText(_notes);
+}
+
+void MainWindow::on_btnotemodifier_clicked()
+{
+    _notes = ui->ctnote->toPlainText();
+}
+
+void MainWindow::on_babandonner_clicked()
+{
+    _notes ="";
+    for(auto iter : _monde)
+        delete iter;
+    ui->listWidget->clear();
+    _monde.clear();
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    mode1();
+}
+
+void MainWindow::on_listWidget_itemSelectionChanged()
+{
+    //std::cout << ui->listWidget->row(ui->listWidget->currentItem()) <<std::endl;
+    //std::cout << ui->listWidget->currentItem()->text().toStdString() << std::endl;
+    for(auto& iter : _monde)
+    {
+
+        if(!(*iter).get_nom().compare(ui->listWidget->currentItem()->text().toStdString()))
+        {
+            //std::cout << (*iter).get_nom() << (*iter).get_basic()<<std::endl;
+            ui->tjeu_2->setText(QString::fromStdString((*iter).get_basic()));
+            return;
+        }
+    }
+    //std::cout<<"fail"<<std::endl;
 }

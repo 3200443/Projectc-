@@ -26,7 +26,10 @@ int NFederation::init()
 NFederation::NFederation() : Pays(1+init()){
 	
 }
-
+NFederation::~NFederation()
+{
+	
+}
 
 void NFederation::sondage()
 {}
@@ -36,4 +39,10 @@ std::string NFederation::display() const
 {
 	printf("display_Nfederation");	//TODO: wtf??
 	return "display_Nfederation";
+}
+std::string NFederation::get_basic()const
+{
+	if(_type == 'T')
+		return Tyrannie::get_basic();
+	return Democratie::get_basic();
 }

@@ -11,9 +11,12 @@
 class NFederation: public Democratie, public Tyrannie
 {
 	public:
-		NFederation();
+        NFederation();
+        virtual ~NFederation();
+
 		std::string display() const;
 		void sondage();
+		std::string get_basic()const;
 	private:
 		int init();
 		char _type;
