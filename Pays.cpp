@@ -20,8 +20,8 @@ std::string Pays::creer_nom()
     std::string ligne;
     std::string contenu;
     std::ifstream fichier("nom_pays.txt", std::ios::in);
-
-    if(fichier){
+    if(fichier)
+    {
         while(std::getline(fichier, ligne)){
             nbLignes++;
         }

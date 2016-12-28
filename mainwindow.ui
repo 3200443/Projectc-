@@ -39,11 +39,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-<<<<<<< HEAD
        <number>3</number>
-=======
-       <number>0</number>
->>>>>>> 9b42a056b1a9497c226872e095e15b0b7a3b02be
       </property>
       <widget class="QWidget" name="page1">
        <layout class="QGridLayout" name="gridLayout">

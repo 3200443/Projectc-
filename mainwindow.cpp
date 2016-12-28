@@ -77,16 +77,19 @@ void MainWindow::on_bjouer_clicked()
 
     if(ui->rfacile->isChecked())
     {
-        for(int i = 0; i < 5; i++)
-            _popularite[i] = 45;
+        _popularite[0] = 45;
+        for(int i = 1; i < 5; i++)
+            _popularite[i] = 1.2;
     }else if(ui->rnormal->isChecked())
     {
-        for(int i = 0; i < 5; i++)
-            _popularite[i] = 35;
+        _popularite[0] = 30;
+        for(int i = 1; i < 5; i++)
+            _popularite[i] = 1;
     }else
     {
-        for(int i = 0; i < 5; i++)
-            _popularite[i] = 10;
+        _popularite[0] = 10;
+        for(int i = 1; i < 5; i++)
+            _popularite[i] = 0.8;
     }
     _nomj = ui->cnomj->text().toStdString();
     ui->stackedWidget->setCurrentIndex(2);
@@ -114,17 +117,11 @@ void MainWindow::mode1(){
     }
 
    // Vérifications
-   for(int i = 0; i < MAX_P; i++) {
-       if(_popularite[i] > 100 ) _popularite[i] = 100;
+   for(int i = 1; i < MAX_P; i++) {
+       if(_popularite[i] > 1 ) _popularite[i] = 1;
        if(_popularite[i] < 0 ) _popularite[i] = 0;
     }
     ui->progressBar_2->setValue(_popularite[0]);
-
-    /* Faut modifier l'affichage - réduire la taille de case de nom de pays ?
-    ui->progressBar_3->setValue(_popularite[1]);
-    ui->progressBar_4->setValue(_popularite[2]);
-    ui->progressBar_5->setValue(_popularite[3]);
-    ui->progressBar_6->setValue(_popularite[4]);*/
 
 
 
