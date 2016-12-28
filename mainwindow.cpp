@@ -122,16 +122,18 @@ void MainWindow::mode1(){
        if(_popularite[i] < 0 ) _popularite[i] = 0;
     }
     ui->progressBar_2->setValue(_popularite[0]);
-
-
-
+    ui->ljeunbj->setText(QString::fromStdString(_nomj));
+    int temp = 0;
+    for(auto& iter : _monde)
+    {
+        temp += iter->get_nbhab();
+    }
+    ui->ljpopmond->setText(QString::number(temp));
     ui->stackedWidget->setCurrentIndex(3);
 }
 /*
 
 
-        // Affichage info pays      // Partie | nb_habitants | ?
-        std::cout << iter.display() << std::endl;
 
         // Event
         int x = rand()%2;
@@ -228,6 +230,7 @@ void MainWindow::on_bVoyager_clicked()
                 //std::cout << "hey" << std::endl;
                 break;
             }
+            //ui->stackedWidget_2->setCurrentIndex(1);
 
         }
     }

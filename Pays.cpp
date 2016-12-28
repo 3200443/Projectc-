@@ -99,6 +99,11 @@ std::string Pays::get_basic()const
 {
     return "";
 }
+int Pays::get_nbhab()
+{
+    return this->_nbHab;
+}
+
 Pays::~Pays()
 {
     

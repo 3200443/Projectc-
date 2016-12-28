@@ -17,6 +17,7 @@ class Pays
 		virtual std::string display() const;
         std::string get_nom()const;
         virtual std::string get_basic()const;
+        int get_nbhab();
 
 	private:
 		std::string creer_nom();
