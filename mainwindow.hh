@@ -40,6 +40,9 @@ private slots:
 
     void on_listWidget_itemSelectionChanged();
 
+    void on_bVoyager_clicked();
+
+
 private:
     Ui::MainWindow *ui;
 

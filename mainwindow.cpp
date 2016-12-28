@@ -187,11 +187,13 @@ void MainWindow::on_babandonner_clicked()
 
 void MainWindow::on_pushButton_clicked()
 {
+    ui->bVoyager->setEnabled(false);
     mode1();
 }
 
 void MainWindow::on_listWidget_itemSelectionChanged()
 {
+    ui->bVoyager->setEnabled(true);
     //std::cout << ui->listWidget->row(ui->listWidget->currentItem()) <<std::endl;
     //std::cout << ui->listWidget->currentItem()->text().toStdString() << std::endl;
     for(auto& iter : _monde)
@@ -205,4 +207,28 @@ void MainWindow::on_listWidget_itemSelectionChanged()
         }
     }
     //std::cout<<"fail"<<std::endl;
+}
+
+void MainWindow::on_bVoyager_clicked()
+{
+    Pays* temp;
+    ui->progressBar->setValue(ui->progressBar->value()+1.0/(_nbpays/100.0));
+    if(ui->listWidget->count() > 0)
+    {
+        for(auto& iter : _monde)
+        {
+
+            if(!(*iter).get_nom().compare(ui->listWidget->currentItem()->text().toStdString()))
+            {
+                temp = iter;
+                if(ui->listWidget->count() > 1)
+                    delete ui->listWidget->takeItem(ui->listWidget->currentRow());
+                else
+                    ui->listWidget->clear();
+                //std::cout << "hey" << std::endl;
+                break;
+            }
+
+        }
+    }
 }
