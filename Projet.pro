@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     Federation.cpp \
     Parti.cpp \
     Pays.cpp \
-    Tyrannie.cpp
+    Tyrannie.cpp \
+    Labyrinthe.cpp
 
 HEADERS  += mainwindow.hh \
     Democratie.hh \
@@ -28,7 +29,8 @@ HEADERS  += mainwindow.hh \
     NFederation.hh \
     Parti.hh \
     Pays.hh \
-    Tyrannie.hh
+    Tyrannie.hh \
+    Labyrinthe.hh
 
 FORMS    += mainwindow.ui
 
