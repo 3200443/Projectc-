@@ -42,6 +42,11 @@ private slots:
 
     void on_bVoyager_clicked();
 
+    void on_bfin_clicked();
+
+    void on_listWidget_itemClicked(QListWidgetItem *item);
+
+    void on_bsonder_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -49,6 +54,8 @@ private:
     void mode1();
 
     int _nbpays;
+
+    int _tour; //note beacause count() is really unreliable
 
     std::string _nomj;
 
@@ -59,6 +66,10 @@ private:
     QString _notes;
 
     short _sondages;
+
+    void fin();
+
+    bool resultat();
 };
 
 #endif // MAINWINDOW_HH

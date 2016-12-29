@@ -24,6 +24,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->spinBox->setValue(2);
     ui->cnomj->setText("Joueur");
     ui->stackedWidget->setCurrentIndex(0);
+    ui->cResultat->setReadOnly(true);
+    _tour=0;
 }
 
 MainWindow::~MainWindow()
@@ -103,6 +105,7 @@ void MainWindow::on_bretour2_clicked()
 
 void MainWindow::mode1(){
     _sondages = 2;
+    _tour = 0;
     _nomj = ui->cnomj->text().toStdString();
 
     ui->tabWidget->setCurrentIndex(0);
@@ -129,6 +132,7 @@ void MainWindow::mode1(){
         temp += iter->get_nbhab();
     }
     ui->ljpopmond->setText(QString::number(temp));
+    ui->stackedWidget_2->setCurrentIndex(0);
     ui->stackedWidget->setCurrentIndex(3);
 }
 /*
@@ -190,32 +194,33 @@ void MainWindow::on_babandonner_clicked()
 void MainWindow::on_pushButton_clicked()
 {
     ui->bVoyager->setEnabled(false);
+    ui->bsonder->setEnabled(false);
     mode1();
 }
 
 void MainWindow::on_listWidget_itemSelectionChanged()
 {
-    ui->bVoyager->setEnabled(true);
-    //std::cout << ui->listWidget->row(ui->listWidget->currentItem()) <<std::endl;
-    //std::cout << ui->listWidget->currentItem()->text().toStdString() << std::endl;
-    for(auto& iter : _monde)
+    if(_nbpays > _tour)
     {
-
-        if(!(*iter).get_nom().compare(ui->listWidget->currentItem()->text().toStdString()))
+        for(auto& iter : _monde)
         {
-            //std::cout << (*iter).get_nom() << (*iter).get_basic()<<std::endl;
-            ui->tjeu_2->setText(QString::fromStdString((*iter).get_basic()));
-            return;
+
+            if(!(*iter).get_nom().compare(ui->listWidget->currentItem()->text().toStdString()))
+            {
+                ui->tjeu_2->setText(QString::fromStdString((*iter).get_basic()));
+                return;
+            }
         }
     }
-    //std::cout<<"fail"<<std::endl;
 }
 
 void MainWindow::on_bVoyager_clicked()
 {
     Pays* temp;
-    ui->progressBar->setValue(ui->progressBar->value()+1.0/(_nbpays/100.0));
-    if(ui->listWidget->count() > 0)
+    ui->bVoyager->setEnabled(false);
+    ui->bsonder->setEnabled(false);
+    ui->progressBar->setValue((_tour+1)*100.0/_nbpays);
+    if(_nbpays > _tour)
     {
         for(auto& iter : _monde)
         {
@@ -223,15 +228,78 @@ void MainWindow::on_bVoyager_clicked()
             if(!(*iter).get_nom().compare(ui->listWidget->currentItem()->text().toStdString()))
             {
                 temp = iter;
-                if(ui->listWidget->count() > 1)
+                if(_nbpays-_tour > 1)
                     delete ui->listWidget->takeItem(ui->listWidget->currentRow());
                 else
-                    ui->listWidget->clear();
-                //std::cout << "hey" << std::endl;
+                    ui->listWidget->reset();
                 break;
             }
-            //ui->stackedWidget_2->setCurrentIndex(1);
-
         }
+        _tour ++ ;
+        fin();
+    }
+}
+
+void MainWindow::fin()
+{
+    QPalette *palette = new QPalette();
+    if(_nbpays - _tour > 0)
+    {
+        ui->stackedWidget_2->setCurrentIndex(0);
+    }
+    else
+    {
+        if(resultat())
+        {
+            ui->cResultat->setText("VICTOIRE");
+            ui->cResultat->setFont(QFont( "lucida", 20, QFont::Bold, TRUE ));
+            palette->setColor(QPalette::Text,Qt::green);
+            palette->setColor(QPalette::Base,Qt::blue);
+        }else
+        {
+            ui->cResultat->setText("PERDU");
+            ui->cResultat->setFont(QFont( "lucida", 20, QFont::Bold, TRUE ));
+            palette->setColor(QPalette::Text,Qt::red);
+            palette->setColor(QPalette::Base,Qt::black);
+        }
+        ui->cResultat->setAlignment(Qt::AlignHCenter);
+        ui->cResultat->setPalette(*palette);
+        ui->stackedWidget_2->setCurrentIndex(1);
+    }
+}
+
+void MainWindow::on_bfin_clicked()
+{
+    ui->stackedWidget_2->setCurrentIndex(2);
+}
+
+bool MainWindow::resultat()
+{
+    return 0; //TODO:PLACEHOLDER;
+}
+
+void MainWindow::on_listWidget_itemClicked(QListWidgetItem *item)
+{
+    if(_sondages > 0 && ! ui->bVoyager->isEnabled())
+        ui->bsonder->setEnabled(true);
+    ui->bVoyager->setEnabled(true);
+}
+
+void MainWindow::on_bsonder_clicked()
+{
+    ui->bsonder->setDisabled(true);
+    if(_sondages > 0)
+    {
+        for(auto& iter : _monde)
+        {
+
+            if(!(*iter).get_nom().compare(ui->listWidget->currentItem()->text().toStdString()))
+            {
+                ui->tjeu_2->setText(QString::fromStdString((*iter).display()));
+                break;
+            }
+        }
+        _sondages --;
+        ui->lsondage->setText(QString::number(_sondages));
     }
 }
