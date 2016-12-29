@@ -10,7 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Projet
 TEMPLATE = app
-
+#CONFIG += qt
 #CONFIG += c++11
 QMAKE_CXXFLAGS += -std=c++11
 SOURCES += main.cpp\

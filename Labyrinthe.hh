@@ -14,7 +14,7 @@ class Labyrinthe
 	public:
         Labyrinthe(int);
 		~Labyrinthe();
-		char get_suivant();
+        char get_suivant(int);
 		char get_precedent();
 	private:
 	typedef struct noeud

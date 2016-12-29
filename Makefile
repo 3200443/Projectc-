@@ -55,7 +55,8 @@ SOURCES       = main.cpp \
 		Federation.cpp \
 		Parti.cpp \
 		Pays.cpp \
-		Tyrannie.cpp moc_mainwindow.cpp
+		Tyrannie.cpp \
+		Labyrinthe.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		NFederation.o \
@@ -64,6 +65,7 @@ OBJECTS       = main.o \
 		Parti.o \
 		Pays.o \
 		Tyrannie.o \
+		Labyrinthe.o \
 		moc_mainwindow.o
 DIST          = nom_pays.txt \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -155,14 +157,16 @@ DIST          = nom_pays.txt \
 		NFederation.hh \
 		Parti.hh \
 		Pays.hh \
-		Tyrannie.hh main.cpp \
+		Tyrannie.hh \
+		Labyrinthe.hh main.cpp \
 		mainwindow.cpp \
 		NFederation.cpp \
 		Democratie.cpp \
 		Federation.cpp \
 		Parti.cpp \
 		Pays.cpp \
-		Tyrannie.cpp
+		Tyrannie.cpp \
+		Labyrinthe.cpp
 QMAKE_TARGET  = Projet
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = Projet
@@ -382,8 +386,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.hh Democratie.hh Federation.hh NFederation.hh Parti.hh Pays.hh Tyrannie.hh $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwindow.cpp NFederation.cpp Democratie.cpp Federation.cpp Parti.cpp Pays.cpp Tyrannie.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.hh Democratie.hh Federation.hh NFederation.hh Parti.hh Pays.hh Tyrannie.hh Labyrinthe.hh $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp mainwindow.cpp NFederation.cpp Democratie.cpp Federation.cpp Parti.cpp Pays.cpp Tyrannie.cpp Labyrinthe.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
 
@@ -416,6 +420,7 @@ moc_mainwindow.cpp: Parti.hh \
 		Democratie.hh \
 		NFederation.hh \
 		Tyrannie.hh \
+		Labyrinthe.hh \
 		mainwindow.hh
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/quarrionn/Documents/2016-2017/C++/Projet -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include mainwindow.hh -o moc_mainwindow.cpp
 
@@ -443,7 +448,8 @@ main.o: main.cpp mainwindow.hh \
 		Federation.hh \
 		Democratie.hh \
 		NFederation.hh \
-		Tyrannie.hh
+		Tyrannie.hh \
+		Labyrinthe.hh
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 mainwindow.o: mainwindow.cpp mainwindow.hh \
@@ -453,6 +459,7 @@ mainwindow.o: mainwindow.cpp mainwindow.hh \
 		Democratie.hh \
 		NFederation.hh \
 		Tyrannie.hh \
+		Labyrinthe.hh \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
@@ -485,6 +492,9 @@ Tyrannie.o: Tyrannie.cpp Tyrannie.hh \
 		Pays.hh \
 		Parti.hh
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Tyrannie.o Tyrannie.cpp
+
+Labyrinthe.o: Labyrinthe.cpp Labyrinthe.hh
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Labyrinthe.o Labyrinthe.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

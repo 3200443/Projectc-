@@ -11,6 +11,8 @@
 #include <sstream>
 #include <cassert>
 
+//#include "Labyrinthe.hh"
+
 #define NB_PAYS_MAX 20
 
 
@@ -25,12 +27,16 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->cnomj->setText("Joueur");
     ui->stackedWidget->setCurrentIndex(0);
     ui->cResultat->setReadOnly(true);
+    ui->cfinminijeu->setReadOnly(true);
+    ui->cfinminijeu->setAlignment(Qt::AlignHCenter);
+    ui->cResultat->setAlignment(Qt::AlignHCenter);
 }
 
 MainWindow::~MainWindow()
 {
-    for(auto iter : _monde)
-        delete iter;
+    //for(auto iter : _monde)
+        //delete iter;
+    //delete _l;
     delete ui;
 }
 
@@ -44,20 +50,37 @@ void MainWindow::on_bretour_clicked()
     ui->stackedWidget->setCurrentIndex(0);
 }
 
+void MainWindow::creer_lab(int d)
+{
+    do
+    {
+        _l= new Labyrinthe(d);
+        if(gerer_lab(-1) == 4)
+            delete _l;
+        else
+            break;
+        //std::cout << "essai"<<std::endl;
+    }while(1);
+
+}
+
 void MainWindow::inipop()
 {
     if(ui->rfacile->isChecked())
     {
         _popularite[0] = 45;
+        creer_lab(0);
         for(int i = 1; i < 5; i++)
             _popularite[i] = 1.2;
     }else if(ui->rnormal->isChecked())
     {
+        creer_lab(1);
         _popularite[0] = 30;
         for(int i = 1; i < 5; i++)
             _popularite[i] = 1;
     }else
     {
+        creer_lab(2);
         _popularite[0] = 10;
         for(int i = 1; i < 5; i++)
             _popularite[i] = 0.8;
@@ -151,10 +174,11 @@ void MainWindow::on_btnotemodifier_clicked()
 void MainWindow::on_babandonner_clicked()
 {
     _notes ="";
+    ui->listWidget->clear();
     for(auto iter : _monde)
         delete iter;
-    ui->listWidget->clear();
     _monde.clear();
+    delete _l;
     ui->stackedWidget->setCurrentIndex(0);
 }
 
@@ -203,6 +227,7 @@ void MainWindow::on_bVoyager_clicked()
             }
         }
         _tour ++ ;
+        event(temp);
         //fin();
     }
 }
@@ -212,6 +237,7 @@ void MainWindow::fin()
     QPalette *palette = new QPalette();
     if(_nbpays - _tour > 0)
     {
+        ui->stackedWidget->setCurrentIndex(3);
         ui->stackedWidget_2->setCurrentIndex(0);
     }
     else
@@ -229,10 +255,11 @@ void MainWindow::fin()
             palette->setColor(QPalette::Text,Qt::red);
             palette->setColor(QPalette::Base,Qt::black);
         }
-        ui->cResultat->setAlignment(Qt::AlignHCenter);
         ui->cResultat->setPalette(*palette);
         ui->stackedWidget_2->setCurrentIndex(1);
+        ui->stackedWidget->setCurrentIndex(3);
     }
+    delete palette;
 }
 
 void MainWindow::on_bfin_clicked()
@@ -269,4 +296,109 @@ void MainWindow::on_bsonder_clicked()
         _sondages --;
         ui->lsondage->setText(QString::number(_sondages));
     }
+}
+
+int MainWindow::gerer_lab(int i)
+{
+    char temp;
+    switch(i)
+    {
+        case -1:
+            temp = _l->get_suivant(-1);
+            break;
+        case 0:
+            temp = _l->get_suivant(0);
+            break;
+        case 1:
+            temp = _l->get_suivant(1);
+            break;
+        case 2:
+            temp = _l->get_suivant(2);
+            break;
+        case 3:
+            temp = _l->get_precedent();
+            break;
+    }
+    if(temp >= 10)
+    {
+        ui->blabarriere->setEnabled(false);
+        if(temp == 14)
+            return 4;
+        temp -=10;
+    }else
+    {
+        ui->blabarriere->setEnabled(true);
+    }
+    switch(temp)
+    {
+        case 0:
+            ui->bporte1->setEnabled(false);
+            ui->bporte2->setEnabled(false);
+            ui->bporte3->setEnabled(false);
+            return temp;
+        case 1:
+            ui->bporte1->setEnabled(true);
+            ui->bporte2->setEnabled(false);
+            ui->bporte3->setEnabled(false);
+            return temp;
+        case 2:
+            ui->bporte1->setEnabled(true);
+            ui->bporte2->setEnabled(true);
+            ui->bporte3->setEnabled(false);
+            return temp;
+        case 3:
+            ui->bporte1->setEnabled(true);
+            ui->bporte2->setEnabled(true);
+            ui->bporte3->setEnabled(true);
+            return temp;
+        case 4:
+            //TODO: AJOUTER LA POPULARITE
+            fin_minijeu(true);
+            return temp;
+    }
+    return temp;
+}
+void MainWindow::fin_minijeu(bool r)
+{
+    if(r)
+        ui->cfinminijeu->setText("REUSSITE");
+    else
+        ui->cfinminijeu->setText("ECHEC");
+    ui->stackedWidget->setCurrentIndex(5);
+}
+
+void MainWindow::on_bfinminijeu_clicked()
+{
+    fin();
+}
+
+void MainWindow::on_bporte1_clicked()
+{
+    gerer_lab(0);
+}
+
+void MainWindow::on_bporte2_clicked()
+{
+    gerer_lab(1);
+}
+
+void MainWindow::on_bporte3_clicked()
+{
+    gerer_lab(2);
+}
+
+void MainWindow::on_blabarriere_clicked()
+{
+    gerer_lab(3);
+}
+
+void MainWindow::event(Pays* iter)
+{
+    ui->stackedWidget->setCurrentIndex(4);
+}
+
+void MainWindow::on_bquit3_clicked()
+{
+    for(auto iter : _monde)
+        delete iter;
 }

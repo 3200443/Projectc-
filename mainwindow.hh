@@ -1,9 +1,12 @@
 #ifndef MAINWINDOW_HH
 #define MAINWINDOW_HH
+
 #include "Parti.hh"
 #include "Pays.hh"
 #include "Federation.hh"
 #include "NFederation.hh"
+#include "Labyrinthe.hh"
+
 #include <QListWidget>
 #include <QMainWindow>
 
@@ -48,6 +51,18 @@ private slots:
 
     void on_bsonder_clicked();
 
+    void on_bfinminijeu_clicked();
+
+    void on_bporte1_clicked();
+
+    void on_bporte2_clicked();
+
+    void on_bporte3_clicked();
+
+    void on_blabarriere_clicked();
+
+    void on_bquit3_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -72,6 +87,16 @@ private:
     bool resultat();
 
     void inipop();
+
+    int gerer_lab(int i);
+
+    Labyrinthe * _l;
+
+    void fin_minijeu(bool r);
+
+    void event(Pays *iter);
+
+    void creer_lab(int d);
 };
 
 #endif // MAINWINDOW_HH
