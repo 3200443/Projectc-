@@ -70,6 +70,8 @@ private:
     void fin();
 
     bool resultat();
+
+    void inipop();
 };
 
 #endif // MAINWINDOW_HH

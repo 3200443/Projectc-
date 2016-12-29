@@ -25,7 +25,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->cnomj->setText("Joueur");
     ui->stackedWidget->setCurrentIndex(0);
     ui->cResultat->setReadOnly(true);
-    _tour=0;
 }
 
 MainWindow::~MainWindow()
@@ -45,38 +44,8 @@ void MainWindow::on_bretour_clicked()
     ui->stackedWidget->setCurrentIndex(0);
 }
 
-
-void MainWindow::on_bjouer_clicked()
+void MainWindow::inipop()
 {
-    std::set<Pays> temp;
-    Pays* p;
-    _nbpays = ui->spinBox->text().toInt();
-    assert(_nbpays>0);
-    assert(_nbpays <21);
-    do
-    {
-        switch(rand()%2)
-        {
-            case(0):
-                p = new Federation;
-                break;
-            case(1):
-                p = new NFederation;
-                break;
-            default:
-                QMessageBox::information(0,"ERREUR","Erreur création dans le _monde");
-                //std::cout<<"Erreur création dans le _monde"<<std::endl;
-        }
-        if( !temp.insert(*p).second )
-        {
-            delete p;
-        }else
-        {
-            _monde.push_back(p);
-        }
-    }while(_monde.size()<(unsigned)_nbpays);
-
-
     if(ui->rfacile->isChecked())
     {
         _popularite[0] = 45;
@@ -93,6 +62,39 @@ void MainWindow::on_bjouer_clicked()
         for(int i = 1; i < 5; i++)
             _popularite[i] = 0.8;
     }
+}
+
+void MainWindow::on_bjouer_clicked()
+{
+    std::set<Pays> temp;
+    Pays* p;
+    _nbpays = ui->spinBox->text().toInt();
+    assert(_nbpays>1);
+    assert(_nbpays <21);
+    do
+    {
+        switch(rand()%2)
+        {
+            case(0):
+                p = new Federation;
+                break;
+            case(1):
+                p = new NFederation;
+                break;
+            default:
+                QMessageBox::information(0,"ERREUR","Erreur création dans le _monde");
+        }
+        if( !temp.insert(*p).second )
+        {
+            delete p;
+        }else
+        {
+            _monde.push_back(p);
+        }
+    }while(_monde.size()<(unsigned)_nbpays);
+
+    inipop();
+
     _nomj = ui->cnomj->text().toStdString();
     ui->stackedWidget->setCurrentIndex(2);
 }
@@ -135,41 +137,6 @@ void MainWindow::mode1(){
     ui->stackedWidget_2->setCurrentIndex(0);
     ui->stackedWidget->setCurrentIndex(3);
 }
-/*
-
-
-
-        // Event
-        int x = rand()%2;
-        if (x) event(popularite, iter, monde);
-
-
-        // Action
-        while(!verrou)
-        {
-            switch(action(sondages))
-            {
-                case 1:
-                    sondages--;
-                    //iter.sondage(monde);	// Pays = virtual TODO: redefibir la fonction sondage en consequence
-                    break;
-
-                case 2:
-                    note(notes);
-                    break;
-
-                case 3:
-                    afficherNote(notes);
-                    break;
-                default: std::cout << " Aucune action" << std::endl;
-                    verrou = true;
-                    break;
-            }
-        }
-    }
-    //TODO: FIN DE PARTIE ICI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!       <---------------------
-}
-*/
 
 void MainWindow::on_btabnoteafficher_clicked()
 {
@@ -236,7 +203,7 @@ void MainWindow::on_bVoyager_clicked()
             }
         }
         _tour ++ ;
-        fin();
+        //fin();
     }
 }
 
@@ -252,13 +219,13 @@ void MainWindow::fin()
         if(resultat())
         {
             ui->cResultat->setText("VICTOIRE");
-            ui->cResultat->setFont(QFont( "lucida", 20, QFont::Bold, TRUE ));
+            ui->cResultat->setFont(QFont( "lucida", 20, QFont::Bold, true ));
             palette->setColor(QPalette::Text,Qt::green);
             palette->setColor(QPalette::Base,Qt::blue);
         }else
         {
             ui->cResultat->setText("PERDU");
-            ui->cResultat->setFont(QFont( "lucida", 20, QFont::Bold, TRUE ));
+            ui->cResultat->setFont(QFont( "lucida", 20, QFont::Bold, true ));
             palette->setColor(QPalette::Text,Qt::red);
             palette->setColor(QPalette::Base,Qt::black);
         }
