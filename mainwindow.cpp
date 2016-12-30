@@ -176,7 +176,7 @@ void MainWindow::on_btnotemodifier_clicked()
 void MainWindow::on_babandonner_clicked()
 {
     _notes ="";
-    ui->listWidget->clear();
+    ui->listWidget->clear(); //TODO: clear() devrait suffir mais valgrind ne semble aps etre satisfait, a revoir
     for(auto iter : _monde)
         delete iter;
     _monde.clear();
@@ -403,11 +403,7 @@ void MainWindow::on_bquit3_clicked()
 {
     for(auto iter : _monde)
         delete iter;
+    delete _l;
 }
 
-void MainWindow::on_bquit2_clicked()
-{
-    for(auto iter : _monde)
-        delete iter;
-     delete _l;
-}
+

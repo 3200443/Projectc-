@@ -94,7 +94,7 @@ void Labyrinthe::detruire_lab(Noeud* p)
 
 Labyrinthe::~Labyrinthe()
 {
-    detruire_lab(_tete);
+    detruire_lab(_tete);//cela detruit aussi la tete ne pas la detruire 2x en ajoutant delete _tete ensuite
 }
 
 char Labyrinthe::get_suivant(int s)

@@ -63,8 +63,6 @@ private slots:
 
     void on_bquit3_clicked();
 
-    void on_bquit2_clicked();
-
 private:
     Ui::MainWindow *ui;
 
