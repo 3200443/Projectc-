@@ -56,7 +56,9 @@ void MainWindow::creer_lab(int d)
     {
         _l= new Labyrinthe(d);
         if(gerer_lab(-1) == 4)
+        {
             delete _l;
+        }
         else
             break;
         //std::cout << "essai"<<std::endl;
@@ -401,4 +403,11 @@ void MainWindow::on_bquit3_clicked()
 {
     for(auto iter : _monde)
         delete iter;
+}
+
+void MainWindow::on_bquit2_clicked()
+{
+    for(auto iter : _monde)
+        delete iter;
+     delete _l;
 }

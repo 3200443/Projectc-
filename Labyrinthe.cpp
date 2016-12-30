@@ -15,15 +15,18 @@
 
 void Labyrinthe::creer_lab(int row, Noeud* p)
 {
-    if(row >0)
+    if(row > 0)
     {
-        for(int i = 0 ; i < rand()%3; i++)
+        int lim = rand()%4;
+        for(int i = 0 ; i < lim; i++)
             p->suivants.push_back(new Noeud);
+        int j=0;
         for(auto & iter : p->suivants)
         {
             iter->precedent = p;
             iter->isArrivee = false;
             creer_lab(row-1,iter);
+            j++;
         }
     }
 }
@@ -62,7 +65,7 @@ Labyrinthe::Labyrinthe(int difficultee)
     switch(difficultee)
     {
         case 0:
-            creer_lab(1,_tete);
+            creer_lab(2,_tete);
             break;
         case 1:
             creer_lab(4, _tete);
@@ -98,11 +101,12 @@ char Labyrinthe::get_suivant(int s)
 {
    if(s ==-1)
    {
-       if(_location->isArrivee == true)
-           return 4;
        if(_location->precedent == NULL)
+       {
+           if(_location->isArrivee == true)
+               return 14;
            return _location->suivants.size() +10;
-       return _location->suivants.size();
+       }
    }else
    {
        int i = 0;
@@ -113,12 +117,13 @@ char Labyrinthe::get_suivant(int s)
                 _location = iter;
                break;
            }
+           i++;
        }
 
-       if(_location->isArrivee == true)
-           return 4;
-       return _location->suivants.size();
     }
+   if(_location->isArrivee == true)
+       return 4;
+   return _location->suivants.size();
 }
 
 char Labyrinthe::get_precedent()
