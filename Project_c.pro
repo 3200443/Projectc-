@@ -1,11 +1,13 @@
 QT += widgets
 
 HEADERS += \
-    jeu.h
+    jeu.h \
+    matheux.h
 
 SOURCES += \
     jeu.cpp \
-    main_jeu.cpp
+    main_jeu.cpp \
+    matheux.cpp
 
 FORMS += \
     jeu.ui
