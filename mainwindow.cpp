@@ -407,3 +407,9 @@ void MainWindow::on_bquit3_clicked()
 }
 
 
+
+void MainWindow::on_blababa_clicked()
+{
+    //TODO: POPULARITE
+    fin_minijeu(false);
+}

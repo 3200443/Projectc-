@@ -63,6 +63,8 @@ private slots:
 
     void on_bquit3_clicked();
 
+    void on_blababa_clicked();
+
 private:
     Ui::MainWindow *ui;
 
