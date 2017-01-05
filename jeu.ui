@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>4</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QHBoxLayout" name="horizontalLayout_18">
@@ -1068,7 +1068,7 @@ p, li { white-space: pre-wrap; }
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>50</width>
+                  <width>80</width>
                   <height>40</height>
                  </size>
                 </property>
@@ -1078,6 +1078,15 @@ p, li { white-space: pre-wrap; }
                   <italic>true</italic>
                   <bold>true</bold>
                  </font>
+                </property>
+                <property name="mouseTracking">
+                 <bool>false</bool>
+                </property>
+                <property name="autoFillBackground">
+                 <bool>false</bool>
+                </property>
+                <property name="smallDecimalPoint">
+                 <bool>false</bool>
                 </property>
                </widget>
               </item>

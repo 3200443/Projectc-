@@ -107,13 +107,13 @@ void Jeu::on_bvalider_jeu2_valeur_clicked()
          ui->reponse->setText(reponse);
 
          ui->bvalider_jeu2_valeur->setEnabled(false);
-    }
-    if(res == true){
-        ui->resul_pop_2->setText(" Vous avez gagnez, +5 points dans la popularite du parti Matheu ");
-     _popularite[5] += _score_jeu2;//################################################################################################################
-    // Si on met cette ligne directement dans le "else" gagnant <=> beug d'affichage du resultat -> plsueiurs valeurs chelous
-    }else{
-         ui->resul_pop_2->setText(" Vous avez perdu, pas de points dans la popularite du parti Matheu ");
+         if(res == true){
+             ui->resul_pop_2->setText(" Vous avez gagnez, +5 points dans la popularite du parti Matheu ");
+          _popularite[5] += _score_jeu2;//################################################################################################################
+         // Si on met cette ligne directement dans le "else" gagnant <=> beug d'affichage du resultat -> plsueiurs valeurs chelous
+         }else{
+              ui->resul_pop_2->setText(" Vous avez perdu, pas de points dans la popularite du parti Matheu ");
+         }
     }
 
 }

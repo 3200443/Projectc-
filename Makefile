@@ -56,7 +56,8 @@ SOURCES       = main.cpp \
 		Parti.cpp \
 		Pays.cpp \
 		Tyrannie.cpp \
-		Labyrinthe.cpp moc_mainwindow.cpp
+		Labyrinthe.cpp \
+		jeu_matheux.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		NFederation.o \
@@ -66,6 +67,7 @@ OBJECTS       = main.o \
 		Pays.o \
 		Tyrannie.o \
 		Labyrinthe.o \
+		jeu_matheux.o \
 		moc_mainwindow.o
 DIST          = nom_pays.txt \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -131,7 +133,8 @@ DIST          = nom_pays.txt \
 		Parti.hh \
 		Pays.hh \
 		Tyrannie.hh \
-		Labyrinthe.hh main.cpp \
+		Labyrinthe.hh \
+		jeu_matheux.h main.cpp \
 		mainwindow.cpp \
 		NFederation.cpp \
 		Democratie.cpp \
@@ -139,7 +142,8 @@ DIST          = nom_pays.txt \
 		Parti.cpp \
 		Pays.cpp \
 		Tyrannie.cpp \
-		Labyrinthe.cpp
+		Labyrinthe.cpp \
+		jeu_matheux.cpp
 QMAKE_TARGET  = Projet
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = Projet
@@ -305,8 +309,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.hh Democratie.hh Federation.hh NFederation.hh Parti.hh Pays.hh Tyrannie.hh Labyrinthe.hh $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwindow.cpp NFederation.cpp Democratie.cpp Federation.cpp Parti.cpp Pays.cpp Tyrannie.cpp Labyrinthe.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.hh Democratie.hh Federation.hh NFederation.hh Parti.hh Pays.hh Tyrannie.hh Labyrinthe.hh jeu_matheux.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp mainwindow.cpp NFederation.cpp Democratie.cpp Federation.cpp Parti.cpp Pays.cpp Tyrannie.cpp Labyrinthe.cpp jeu_matheux.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
 
@@ -414,6 +418,9 @@ Tyrannie.o: Tyrannie.cpp Tyrannie.hh \
 
 Labyrinthe.o: Labyrinthe.cpp Labyrinthe.hh
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Labyrinthe.o Labyrinthe.cpp
+
+jeu_matheux.o: jeu_matheux.cpp jeu_matheux.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o jeu_matheux.o jeu_matheux.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
