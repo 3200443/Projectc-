@@ -403,3 +403,5 @@ void Jeu::on_valider_calcul5_clicked()
 
     if(_cmt == 5) Fin_jeu_calcul();
 }
+
+
