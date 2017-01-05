@@ -21,34 +21,6 @@ Jeu::~Jeu()
 }
 
 
-void Jeu::on_bvalider_jeu1_clicked()
-{
-    //QMessageBox::information(0,"=====","Valider");
-
-    if(ui->radioButton_5->isChecked()){
-        _popularite[0] = _popularite[0] + 5;
-        ui->Resultat_affichage->setText("C'est bien le bon résultat ! +5 % dans la popularité générale ! ");
-    }else{
-        ui->Resultat_affichage->setText("Raté ! La réponse était le pommeau de douche ! C'est le seul objet que tu ne trouveras pas au collège ! ");
-    }
-
-    ui->bvalider_jeu1->setEnabled(false);
-
-}
-
-
-void Jeu::on_next_jeu2_clicked()
-{
-    // A remplacer en conséquence !!!!
-    ui->stackedWidget->setCurrentIndex(2);
-}
-
-void Jeu::on_Jeu_1_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(1);
-}
-
-
 void Jeu::on_bvalider_jeu2_clicked()
 {
 

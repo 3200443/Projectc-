@@ -16,15 +16,11 @@ public:
     ~Jeu();
 
 private slots:
-    void on_bvalider_jeu1_clicked();
 
-    void on_Jeu_1_clicked();
 
     void on_bvalider_jeu2_clicked();
 
     void on_bvalider_jeu2_valeur_clicked();
-
-    void on_next_jeu2_clicked();
 
     void on_Jeu_2_clicked();
 
