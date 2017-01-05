@@ -329,7 +329,6 @@ void Jeu::Fin_jeu_calcul(){
 
 }
 
-
 void Jeu::on_valider_calcul1_clicked()
 {
     ui->valider_calcul1->setEnabled(false);
