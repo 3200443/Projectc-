@@ -18,7 +18,7 @@ std::string Pays::creer_nom()
 	int i = 0;
     int nbLignes = 0;
     std::string ligne;
-    std::string contenu;
+    std::string contenu = "!";
     std::ifstream fichier("nom_pays.txt", std::ios::in);
     if(fichier)
     {
@@ -29,7 +29,7 @@ std::string Pays::creer_nom()
         fichier.clear();
         fichier.seekg(0,std::ios::beg);
         // Affiche nom aléatoire
-        int n = rand()%nbLignes;
+        int n = rand()%(nbLignes) +1;
         while(i < n){
             std::getline(fichier, contenu);
             i++;

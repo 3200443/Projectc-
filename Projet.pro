@@ -21,8 +21,7 @@ SOURCES += main.cpp\
     Parti.cpp \
     Pays.cpp \
     Tyrannie.cpp \
-    Labyrinthe.cpp \
-    jeu_matheux.cpp
+    Labyrinthe.cpp
 
 HEADERS  += mainwindow.hh \
     Democratie.hh \
@@ -31,8 +30,7 @@ HEADERS  += mainwindow.hh \
     Parti.hh \
     Pays.hh \
     Tyrannie.hh \
-    Labyrinthe.hh \
-    jeu_matheux.h
+    Labyrinthe.hh
 
 FORMS    += mainwindow.ui
 
