@@ -1,18 +1,20 @@
 #include "jeu.h"
 #include "ui_jeu.h"
-#include "matheux.h"
+
 
 #include <QTimer>
 #include <QMessageBox>
-// QMessageBox::information(0,"=====","Valider");
 
-Jeu::Jeu(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::Jeu)
-{
+Jeu::Jeu(QWidget *parent) : QMainWindow(parent), ui(new Ui::Jeu){
+    //srand(time(NULL));
+
     ui->setupUi(this);
-
     ui->stackedWidget->setCurrentIndex(0);
+
+
+    int difficulte = 2;
+    _jeu_logicos = new Logicos(difficulte);  // facile = 0, normale = 1; difficile = 2;
+    _jeu_guerre = new Guerre();
 }
 
 Jeu::~Jeu()
@@ -21,75 +23,55 @@ Jeu::~Jeu()
 }
 
 
-void Jeu::on_bvalider_jeu2_clicked()
-{
-
-    srand(time(NULL));
-    _cmt_jeu2 = 0;
-    _val_rand = rand()%100;
-    //ui->coups_restants->isReadOnly();
-
-    if(ui->radioButton_8->isChecked()){
-        _cmt_jeu2 = 10;
-        _score_jeu2 = 5;
-
-    }else if(ui->radioButton_9->isChecked()){
-        _cmt_jeu2 = 7;
-        _score_jeu2 = 7;
-
-    }else if(ui->radioButton_10->isChecked()){
-        _cmt_jeu2 = 5;
-        _score_jeu2 = 10;
-
-    }
-    ui->radioButton_8->setEnabled(false);
-    ui->radioButton_9->setEnabled(false);
-    ui->radioButton_10->setEnabled(false);
-    ui->bvalider_jeu2->setEnabled(false);
-
-    QString coup = QString("%1").arg(_cmt_jeu2);
-    ui->coups_restants->setText(coup);
-
-   /* QString status = QString("val =  %1").arg(_val_rand);
-    QMessageBox::information(0,"=====",status); */
-}
-
+// ======= Jeu Logicos =========
 
 void Jeu::on_bvalider_jeu2_valeur_clicked()
 {
-    static bool res = false;
-    if(_cmt_jeu2 > 0){
-        int reponse =  ui->spin_reponse->value();
 
-        if(reponse < _val_rand){
-             ui->conseil->setText("Il faut un nombre plus grand !");
-        }else if(reponse > _val_rand){
-             ui->conseil->setText("Il faut un nombre plus petit !");
-        }else{
-             ui->conseil->setText("Nombre trouvé !");
-             _cmt_jeu2 =1;
-             res = true;
+    if(_jeu_logicos->get_cmt() > 0){
+
+        _jeu_logicos->set_reponse(ui->spin_reponse->value());
+
+        switch (_jeu_logicos->compare()){
+            case 0 : ui->conseil->setText("Nombre trouvé !");
+                    break;
+            case 1 : ui->conseil->setText("Il faut un nombre plus grand !");
+                    break;
+            case 2 : ui->conseil->setText("Il faut un nombre plus petit !");
+                    break;
         }
-        _cmt_jeu2--;
-        QString coup = QString("%1").arg(_cmt_jeu2);
-         ui->coups_restants->setText(coup);
+
      }
-    if(_cmt_jeu2 == 0){
-         QString reponse = QString("%1").arg(_val_rand);
+
+        QString coup = QString("%1").arg(_jeu_logicos->get_cmt());
+        ui->coups_restants->setText(coup);
+
+    if(_jeu_logicos->get_cmt() == 0){
+        ui->bvalider_jeu2_valeur->setEnabled(false);
+
+         QString reponse = QString("%1").arg(_jeu_logicos->get_val_rand());
          ui->reponse->setText(reponse);
 
-         ui->bvalider_jeu2_valeur->setEnabled(false);
-         if(res == true){
-             ui->resul_pop_2->setText(" Vous avez gagnez, +5 points dans la popularite du parti Matheu ");
-          _popularite[5] += _score_jeu2;//################################################################################################################
-         // Si on met cette ligne directement dans le "else" gagnant <=> beug d'affichage du resultat -> plsueiurs valeurs chelous
+
+
+
+// On avais dit un return avec la popularite mais la du coup jpeux rien retourner :/
+
+         if(_jeu_logicos->get_reussi() == true){
+
+             ui->resul_pop_2->setText(" Vous avez gagnez, +5 points dans la popularite du parti Logicos ");
+            _popularite[2] += _jeu_logicos->get_score_jeu();
+
          }else{
-              ui->resul_pop_2->setText(" Vous avez perdu, pas de points dans la popularite du parti Matheu ");
+              ui->resul_pop_2->setText(" Vous avez perdu, pas de points dans la popularite du parti Logicos ");
          }
     }
 
 }
+// ======= Fin Jeu Logicos =========
 
+
+// ====== Table de page du début, delete par la suite ======
 
 void Jeu::on_Jeu_2_clicked()
 {
@@ -101,10 +83,14 @@ void Jeu::on_Jeu_3_clicked()
     ui->stackedWidget->setCurrentIndex(2);
 }
 
-void Jeu::on_next_jeu3_clicked()
+void Jeu::on_next_jeu3_clicked()    // Fin jeu logicos
 {
      ui->stackedWidget->setCurrentIndex(2);
 }
+
+
+
+// ======== Jeu Guerre ========
 
 void Jeu::Jeu_button(){
 
@@ -121,17 +107,11 @@ void Jeu::Jeu_button(){
     ui->pushButton_13->setEnabled(false);
 
 
-
-
-    int  x = rand()%5;
-
-    QString val_x = QString("x = %1 et _cmt = %2").arg(x).arg(_cmt_jeu3);
-    ui->Resultat_3->setText(val_x);
-
-    QString nb_clic = QString("%1").arg(_cmt_jeu3);
+    QString nb_clic = QString("%1").arg(_jeu_guerre->get_cmt());
     ui->nb_clic->setText(nb_clic);
 
-    switch(x) {
+
+    switch(_jeu_guerre->gene_val_rand()) {
 
     case 0 : ui->pushButton_5->setEnabled(true);
         break;
@@ -157,36 +137,33 @@ void Jeu::Jeu_button(){
 }
 
 void Jeu::chronometre(){
-    _cmt_chrono+=0.5;
-    ui->lcdNumber->display(_cmt_chrono);
+    ui->lcdNumber->display(_jeu_guerre->increment_cmt_chrono());
 }
-
 
 
 void Jeu::on_go_timer_clicked()
 {
-
-   ui->go_timer->setEnabled(false);
-    _cmt_jeu3 = 0;
-   _cmt_chrono = 0;
-   _ch_timer = new QTimer(this);    // chronometre
-   _m_timer = new QTimer(this);     // clic_bouttons
+    ui->go_timer->setEnabled(false);
+    _m_timer = new QTimer(this);
     connect(_m_timer, SIGNAL(timeout()), this, SLOT(Jeu_button()));
     connect(_m_timer, SIGNAL(timeout()), this, SLOT(chronometre()));
     _m_timer->start(500);
-    _ch_timer->start(500);
 
 }
 
 void Jeu::Calcul_pop_jeu3(){
-    int result_temps = ui->lcdNumber->value();
 
-    if(result_temps <= 15 ){
+    _jeu_guerre->set_temps_final(ui->lcdNumber->value());
+
+    if(_jeu_guerre->get_temps_final() <= 15 ){
+
         ui->Resultat_3->setText("Temps inferieur a 15 s : popularite parti agressif + 10 points");
-        _popularite[1] += 10;//################################################################################################################
-    }else if(15 < result_temps && result_temps < 30){
+        _popularite[1] += 10;
+
+    }else if(15 < _jeu_guerre->get_temps_final() && _jeu_guerre->get_temps_final() < 30){
         ui->Resultat_3->setText("Temps compris entre 15 et 30 s :popularite parti agressif + 5 points");
-        _popularite[1] += 5;//################################################################################################################
+        _popularite[1] += 5;
+
     }else{
         ui->Resultat_3->setText("Temps supérieur a 30 s : pas de points gagnes pour le parti agressif");
     }
@@ -194,13 +171,12 @@ void Jeu::Calcul_pop_jeu3(){
 }
 
 void Jeu::Action_jeu_clic(){
-    _cmt_jeu3++;
-    if(_cmt_jeu3 == 10){
+    _jeu_guerre->increment_cmt();
+
+    if(_jeu_guerre->get_cmt() >= 10){
         _m_timer->stop();
-        _ch_timer->stop();
         Calcul_pop_jeu3();
     }
-
 }
 
 void Jeu::on_pushButton_8_clicked()

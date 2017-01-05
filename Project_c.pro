@@ -2,12 +2,14 @@ QT += widgets
 
 HEADERS += \
     jeu.h \
-    matheux.h
+    Logicos.h \
+    Guerre.h
 
 SOURCES += \
     jeu.cpp \
     main_jeu.cpp \
-    matheux.cpp
+    Logicos.cpp \
+    Guerre.cpp
 
 FORMS += \
     jeu.ui

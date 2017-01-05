@@ -2,6 +2,9 @@
 #define JEU_H
 
 #include <QMainWindow>
+#include "Logicos.h"
+#include "Guerre.h"
+
 
 namespace Ui {
 class Jeu;
@@ -15,10 +18,13 @@ public:
     explicit Jeu(QWidget *parent = 0);
     ~Jeu();
 
+private:
+    Logicos *_jeu_logicos;
+    Guerre *_jeu_guerre;
+
 private slots:
 
 
-    void on_bvalider_jeu2_clicked();
 
     void on_bvalider_jeu2_valeur_clicked();
 
@@ -36,7 +42,7 @@ private slots:
 
     void Calcul_pop_jeu3();
 
-    void  Action_jeu_clic();
+    void Action_jeu_clic();
 
     void on_pushButton_8_clicked();
 
@@ -57,6 +63,7 @@ private slots:
     void on_pushButton_13_clicked();
 
     void on_next_jeu3_2_clicked();
+
     void on_go_jeu_calcul_clicked();
 
     void on_Jeu_4_clicked();
@@ -76,15 +83,8 @@ private slots:
 private:
     Ui::Jeu *ui;
     float _popularite[5];
-    int _val_rand;
-    int _cmt_jeu2;
-    int _score_jeu2;
 
-// ======= Jeu clic ========
-    int _cmt_jeu3;
-    float _cmt_chrono;
     QTimer *_m_timer;
-    QTimer *_ch_timer;
 
 // ====== Jeu calcul ======
     int  _resultat_equa1;
