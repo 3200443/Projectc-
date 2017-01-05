@@ -93,17 +93,17 @@ void Jeu::on_bvalider_jeu2_valeur_clicked()
 
 void Jeu::on_Jeu_2_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(2);
+    ui->stackedWidget->setCurrentIndex(1);
 }
 
 void Jeu::on_Jeu_3_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(3);
+    ui->stackedWidget->setCurrentIndex(2);
 }
 
 void Jeu::on_next_jeu3_clicked()
 {
-     ui->stackedWidget->setCurrentIndex(3);
+     ui->stackedWidget->setCurrentIndex(2);
 }
 
 void Jeu::Jeu_button(){
@@ -259,12 +259,12 @@ void Jeu::on_pushButton_13_clicked()
 
 void Jeu::on_next_jeu3_2_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(4);
+    ui->stackedWidget->setCurrentIndex(3);
 }
 
 void Jeu::on_Jeu_4_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(4);
+    ui->stackedWidget->setCurrentIndex(3);
 }
 
 // ============== Jeu calcul =============
