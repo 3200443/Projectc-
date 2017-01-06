@@ -23,11 +23,8 @@ Jeu::~Jeu()
 
 void Jeu::on_bvalider_jeu2_clicked()
 {
-
-    srand(time(NULL));
     _cmt_jeu2 = 0;
     _val_rand = rand()%100;
-    //ui->coups_restants->isReadOnly();
 
     if(ui->radioButton_8->isChecked()){
         _cmt_jeu2 = 10;

@@ -30,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->cfinminijeu->setReadOnly(true);
     ui->cfinminijeu->setAlignment(Qt::AlignHCenter);
     ui->cResultat->setAlignment(Qt::AlignHCenter);
+    ui->Enonce_3->setReadOnly(true);
 }
 
 MainWindow::~MainWindow()
@@ -50,11 +51,11 @@ void MainWindow::on_bretour_clicked()
     ui->stackedWidget->setCurrentIndex(0);
 }
 
-void MainWindow::creer_lab(int d)
+void MainWindow::creer_lab()
 {
     do
     {
-        _l= new Labyrinthe(d);
+        _l= new Labyrinthe(_difficulte);
         if(gerer_lab(-1) == 4)
         {
             delete _l;
@@ -70,23 +71,22 @@ void MainWindow::inipop()
 {
     if(ui->rfacile->isChecked())
     {
-        _popularite[0] = 45;
-        creer_lab(0);
-        for(int i = 1; i < 5; i++)
-            _popularite[i] = 1.2;
+        _difficulte = 0;
+        for(int i = 0; i < 4; i++)
+            _popularite[i] = 40;
     }else if(ui->rnormal->isChecked())
     {
-        creer_lab(1);
-        _popularite[0] = 30;
-        for(int i = 1; i < 5; i++)
-            _popularite[i] = 1;
+        _difficulte = 1;
+        for(int i = 0; i < 4; i++)
+            _popularite[i] = 30;
     }else
     {
-        creer_lab(2);
+        _difficulte = 2;
         _popularite[0] = 10;
-        for(int i = 1; i < 5; i++)
-            _popularite[i] = 0.8;
+        for(int i = 0; i < 4; i++)
+            _popularite[i] = 20;
     }
+    creer_lab();
 }
 
 void MainWindow::on_bjouer_clicked()
@@ -145,6 +145,7 @@ void MainWindow::mode1(){
     {
         ui->listWidget->addItem(QString::fromStdString((*iter).get_nom()));
     }
+   // init logicos
 
    // Vérifications
    for(int i = 1; i < MAX_P; i++) {
@@ -209,7 +210,6 @@ void MainWindow::on_listWidget_itemSelectionChanged()
 
 void MainWindow::on_bVoyager_clicked()
 {
-    Pays* temp;
     ui->bVoyager->setEnabled(false);
     ui->bsonder->setEnabled(false);
     ui->progressBar->setValue((_tour+1)*100.0/_nbpays);
@@ -220,7 +220,6 @@ void MainWindow::on_bVoyager_clicked()
 
             if(!(*iter).get_nom().compare(ui->listWidget->currentItem()->text().toStdString()))
             {
-                temp = iter;
                 if(_nbpays-_tour > 1)
                     delete ui->listWidget->takeItem(ui->listWidget->currentRow());
                 else
@@ -229,7 +228,7 @@ void MainWindow::on_bVoyager_clicked()
             }
         }
         _tour ++ ;
-        event(temp);
+        event();
         //fin();
     }
 }
@@ -271,10 +270,29 @@ void MainWindow::on_bfin_clicked()
 
 bool MainWindow::resultat()
 {
+    int temp[4] = {0};
+    float moy = 0;
+    const std::string nom_p[MAX_P] = {"curieux","guerre","logicos","matheux"};
+    for(auto & iterm : _monde)
+    {
+        for(auto & iterp : iterm->get_partis())
+        {
+            for(int i = 0; i < 4 ; i++)
+            {
+                if(iterp.first.get_nom().compare(nom_p[i]))
+                    temp[i] += iterp.second;
+            }
+        }
+    }
+    for(int i = 0; i < 4; i++)
+    {
+        moy += temp[i]*_popularite[i];
+    }
+    if(moy/_)
     return 0; //TODO:PLACEHOLDER;
 }
 
-void MainWindow::on_listWidget_itemClicked(QListWidgetItem *item)
+void MainWindow::on_listWidget_itemClicked()
 {
     if(_sondages > 0 && ! ui->bVoyager->isEnabled())
         ui->bsonder->setEnabled(true);
@@ -355,6 +373,8 @@ int MainWindow::gerer_lab(int i)
             return temp;
         case 4:
             //TODO: AJOUTER LA POPULARITE
+            delete _l;
+            creer_lab();
             fin_minijeu(true);
             return temp;
     }
@@ -394,9 +414,27 @@ void MainWindow::on_blabarriere_clicked()
     gerer_lab(3);
 }
 
-void MainWindow::event(Pays* iter)
+void MainWindow::event()
 {
-    ui->stackedWidget->setCurrentIndex(4);
+    int r = rand()%5;
+    switch(r)
+    {
+        case 0:
+            ui->stackedWidget->setCurrentIndex(4);
+            break;
+        case 1:
+            ui->stackedWidget->setCurrentIndex(5);
+            break;
+        case 2:
+            ui->stackedWidget->setCurrentIndex(6);
+            break;
+        case 3:
+            ui->stackedWidget->setCurrentIndex(7);
+            break;
+        case 4:
+            ui->stackedWidget->setCurrentIndex(8);
+            break;
+    }
 }
 
 void MainWindow::on_bquit3_clicked()
@@ -411,5 +449,7 @@ void MainWindow::on_bquit3_clicked()
 void MainWindow::on_blababa_clicked()
 {
     //TODO: POPULARITE
+    delete _l;
+    creer_lab();
     fin_minijeu(false);
 }

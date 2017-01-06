@@ -14,40 +14,40 @@
 
 
 Parti::Parti(){
-    int j = rand()%(THEME_PARTI);
+    //int j = rand()%(THEME_PARTI);
     int k = rand()%MAX_P;
     //std::cout<<"j:" << j <<" k:"<<k<<std::endl;
     switch (k)
     {
         case 0 :
             _nom = nom_p[0];
-            for(int i = 0; i < NB_LOBBY; i++)
-                _lobby.push_back(p_agressif[j][i]);
+//            for(int i = 0; i < NB_LOBBY; i++)
+//                _lobby.push_back(p_agressif[j][i]);
                 break;
 
         case 1 : 
             _nom = nom_p[1];
-            for(int i = 0; i < NB_LOBBY; i++)
-                _lobby.push_back(p_peace[j][i]);
+//            for(int i = 0; i < NB_LOBBY; i++)
+//                _lobby.push_back(p_peace[j][i]);
             break;
 
          case 2 : 
             _nom = nom_p[2];
-            for(int i = 0; i < NB_LOBBY; i++)
-                _lobby.push_back(p_zinzin[j][i]);
+//            for(int i = 0; i < NB_LOBBY; i++)
+//                _lobby.push_back(p_zinzin[j][i]);
             break;
 
         case 3 : 
             _nom = nom_p[3];
-            for(int i = 0; i < NB_LOBBY; i++)
-                _lobby.push_back(p_cuisine[j][i]);
+//            for(int i = 0; i < NB_LOBBY; i++)
+//                _lobby.push_back(p_cuisine[j][i]);
                 break;
 
-        default : 
-            _nom = nom_p[4];
-            for(int i = 0; i < NB_LOBBY; i++)
-                _lobby.push_back(p_maths[j][i]);
-            break;
+//        default :
+//            _nom = nom_p[4];
+////            for(int i = 0; i < NB_LOBBY; i++)
+////                _lobby.push_back(p_maths[j][i]);
+//            break;
     }
 
 }
@@ -68,10 +68,9 @@ std::string Parti::display() const
     return oss.str();
 }
 
+const std::string Parti::nom_p[MAX_P] = {"curieux","guerre","logicos","matheux"};
+/*short Parti::_id 	= 0;
 
-//short Parti::_id 	= 0;
-
-const std::string Parti::nom_p[MAX_P] = {"agressif","peace","timbré","cuisine","Matheux"};
 
 const std::string Parti::p_agressif[THEME_PARTI][NB_LOBBY] =    {{"AK","grenades"},
                                                                 {"bombe","mines"},
@@ -88,3 +87,4 @@ const std::string Parti::p_cuisine[THEME_PARTI][NB_LOBBY] =     {{"choux","carro
 const std::string Parti::p_maths[THEME_PARTI][NB_LOBBY] =      {{"Des chiffres"," Et des chiffres"},
                                                                 {"2 + x = 12","Triiigonométriiiie"},
                                                                 {"Thales","Pour ton chien"}};   // Ok j'avoue c'est nul mdrrr
+*/
