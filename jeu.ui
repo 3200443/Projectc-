@@ -18,11 +18,8 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-<<<<<<< HEAD
        <number>1</number>
-=======
        <number>3</number>
->>>>>>> 44c34ee
       </property>
       <widget class="QWidget" name="page">
        <layout class="QHBoxLayout" name="horizontalLayout_18">
@@ -54,7 +51,6 @@
         <item row="0" column="0">
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
-<<<<<<< HEAD
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_9">
@@ -93,9 +89,7 @@
               </item>
              </layout>
             </item>
-=======
            <layout class="QHBoxLayout" name="horizontalLayout_9">
->>>>>>> 44c34ee
             <item>
              <spacer name="horizontalSpacer_11">
               <property name="orientation">
@@ -204,7 +198,6 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
             <item>
-<<<<<<< HEAD
              <layout class="QHBoxLayout" name="horizontalLayout">
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_2"/>
@@ -276,7 +269,6 @@ p, li { white-space: pre-wrap; }
                </spacer>
               </item>
              </layout>
-=======
              <widget class="QRadioButton" name="radioButton_9">
               <property name="text">
                <string>Normal</string>
@@ -289,7 +281,6 @@ p, li { white-space: pre-wrap; }
                <string>Difficile</string>
               </property>
              </widget>
->>>>>>> 44c34ee
             </item>
             <item>
              <spacer name="horizontalSpacer_21">
@@ -526,7 +517,6 @@ p, li { white-space: pre-wrap; }
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_13">
             <item>
-<<<<<<< HEAD
              <layout class="QHBoxLayout" name="horizontalLayout_13">
               <item>
                <spacer name="horizontalSpacer_19">
@@ -569,7 +559,6 @@ p, li { white-space: pre-wrap; }
                </spacer>
               </item>
              </layout>
-=======
              <spacer name="horizontalSpacer_19">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
@@ -608,7 +597,6 @@ p, li { white-space: pre-wrap; }
                </size>
               </property>
              </spacer>
->>>>>>> 44c34ee
             </item>
            </layout>
           </item>

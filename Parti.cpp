@@ -10,7 +10,7 @@
 #include "Parti.hh"
 
 
-#define NB_LOBBY 2
+//#define NB_LOBBY 2
 
 
 Parti::Parti(){
@@ -43,11 +43,11 @@ Parti::Parti(){
 //                _lobby.push_back(p_cuisine[j][i]);
                 break;
 
-//        default :
-//            _nom = nom_p[4];
+        default :
+             _nom = nom_p[4];
 ////            for(int i = 0; i < NB_LOBBY; i++)
 ////                _lobby.push_back(p_maths[j][i]);
-//            break;
+             break;
     }
 
 }
@@ -57,9 +57,9 @@ bool Parti::operator<(const Parti & p)const{
 std::string Parti::get_nom()const{
 	return this->_nom;
 }
-std::vector<std::string> Parti::get_lobby() const{
-	return this->_lobby;
-}
+//std::vector<std::string> Parti::get_lobby() const{
+//	return this->_lobby;
+//}
 // ======== Ajout perso ==========
 std::string Parti::display() const
 {
@@ -68,7 +68,7 @@ std::string Parti::display() const
     return oss.str();
 }
 
-const std::string Parti::nom_p[MAX_P] = {"curieux","guerre","logicos","matheux"};
+const std::string Parti::nom_p[MAX_P] = {"curieux","guerre","logicos","matheux","N-A"};
 /*short Parti::_id 	= 0;
 
 

@@ -6,8 +6,8 @@
 #include <vector>
 #include <set>
 
-#define MAX_P 4
-#define THEME_PARTI 3
+#define MAX_P 5
+//#define THEME_PARTI 3
 
 class Parti
 {
@@ -20,7 +20,7 @@ class Parti
 		
 	private:
 		std::string _nom;
-		std::vector<std::string> _lobby;
+        //std::vector<std::string> _lobby;
 		//static short _id;
 
 		static const std::string nom_p[MAX_P];

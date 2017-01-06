@@ -11,7 +11,6 @@
 #include <sstream>
 #include <cassert>
 
-//#include "Labyrinthe.hh"
 
 #define NB_PAYS_MAX 20
 
@@ -31,13 +30,18 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->cfinminijeu->setAlignment(Qt::AlignHCenter);
     ui->cResultat->setAlignment(Qt::AlignHCenter);
     ui->Enonce_3->setReadOnly(true);
+    ui->VACANCES->setReadOnly(true);
+    ui->VACANCES->setStyleSheet("text-align: center");
+    QPalette *palette = new QPalette();
+    palette->setColor(QPalette::Base,Qt::green);
+    ui->VACANCES->setPalette(*palette);
+    ui->VACANCES->setAlignment(Qt::AlignHCenter);
+    ui->VACANCES->setText("Est ce reellement le moment de prendre des vacances??");
+    delete palette;
 }
 
 MainWindow::~MainWindow()
 {
-    //for(auto iter : _monde)
-        //delete iter;
-    //delete _l;
     delete ui;
 }
 
@@ -62,7 +66,6 @@ void MainWindow::creer_lab()
         }
         else
             break;
-        //std::cout << "essai"<<std::endl;
     }while(1);
 
 }
@@ -72,18 +75,21 @@ void MainWindow::inipop()
     if(ui->rfacile->isChecked())
     {
         _difficulte = 0;
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < 5; i++)
+        {
             _popularite[i] = 40;
+        }
     }else if(ui->rnormal->isChecked())
     {
         _difficulte = 1;
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < 5; i++)
+        {
             _popularite[i] = 30;
+        }
     }else
     {
         _difficulte = 2;
-        _popularite[0] = 10;
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < 5; i++)
             _popularite[i] = 20;
     }
     creer_lab();
@@ -145,14 +151,16 @@ void MainWindow::mode1(){
     {
         ui->listWidget->addItem(QString::fromStdString((*iter).get_nom()));
     }
-   // init logicos
 
-   // Vérifications
-   for(int i = 1; i < MAX_P; i++) {
-       if(_popularite[i] > 1 ) _popularite[i] = 1;
-       if(_popularite[i] < 0 ) _popularite[i] = 0;
-    }
-    ui->progressBar_2->setValue(_popularite[0]);
+
+    //popularité
+    const std::string nom_p[5] = {"curieux","guerre","logicos","matheux","N-A"};
+    ui->label_p1->setText(QString::fromStdString(nom_p[0]));
+    ui->label_p2->setText(QString::fromStdString(nom_p[1]));
+    ui->label_p3->setText(QString::fromStdString(nom_p[2]));
+    ui->label_p4->setText(QString::fromStdString(nom_p[3]));
+    set_pop();
+
     ui->ljeunbj->setText(QString::fromStdString(_nomj));
     int temp = 0;
     for(auto& iter : _monde)
@@ -168,6 +176,18 @@ void MainWindow::on_btabnoteafficher_clicked()
 {
     ui->ctnote->setText(_notes);
 }
+void MainWindow::set_pop()
+{
+    // Vérifications
+    for(int i = 1; i < MAX_P; i++) {
+        if(_popularite[i] > 100 ) _popularite[i] = 100;
+        if(_popularite[i] < 0 ) _popularite[i] = 0;
+    }
+    ui->progressBar_p1->setValue(_popularite[0]);
+    ui->progressBar_p2->setValue(_popularite[1]);
+    ui->progressBar_p3->setValue(_popularite[2]);
+    ui->progressBar_p4->setValue(_popularite[3]);
+}
 
 void MainWindow::on_btnotemodifier_clicked()
 {
@@ -176,7 +196,7 @@ void MainWindow::on_btnotemodifier_clicked()
 
 void MainWindow::on_babandonner_clicked()
 {
-    _notes ="";
+    _notes = "";
     ui->listWidget->clear(); //TODO: clear() devrait suffir mais valgrind ne semble aps etre satisfait, a revoir
     for(auto iter : _monde)
         delete iter;
@@ -235,7 +255,6 @@ void MainWindow::on_bVoyager_clicked()
 
 void MainWindow::fin()
 {
-    QPalette *palette = new QPalette();
     if(_nbpays - _tour > 0)
     {
         ui->stackedWidget->setCurrentIndex(3);
@@ -243,6 +262,7 @@ void MainWindow::fin()
     }
     else
     {
+        QPalette *palette = new QPalette();
         if(resultat())
         {
             ui->cResultat->setText("VICTOIRE");
@@ -259,8 +279,8 @@ void MainWindow::fin()
         ui->cResultat->setPalette(*palette);
         ui->stackedWidget_2->setCurrentIndex(1);
         ui->stackedWidget->setCurrentIndex(3);
+        delete palette;
     }
-    delete palette;
 }
 
 void MainWindow::on_bfin_clicked()
@@ -270,14 +290,14 @@ void MainWindow::on_bfin_clicked()
 
 bool MainWindow::resultat()
 {
-    int temp[5] = {0};
+    int temp[6] = {0};
     float moy = 0;
-    const std::string nom_p[MAX_P] = {"curieux","guerre","logicos","matheux"};
+    const std::string nom_p[5] = {"curieux","guerre","logicos","matheux","N-A"};
     for(auto & iterm : _monde)
     {
         for(auto & iterp : iterm->get_partis())
         {
-            for(int i = 0; i < 4 ; i++)
+            for(int i = 0; i < 5 ; i++)
             {
                 if(iterp.first.get_nom().compare(nom_p[i]))
                 {
@@ -287,11 +307,11 @@ bool MainWindow::resultat()
             }
         }
     }
-    for(int i = 0; i < 4; i++)
+    for(int i = 0; i < 5; i++)
     {
         moy += temp[i]*_popularite[i];
     }
-    if(moy/temp[4] > 60)
+    if(moy/(float)temp[5] > 60)
         return 1;
     return 0; //TODO:PLACEHOLDER;
 }
@@ -390,6 +410,7 @@ void MainWindow::fin_minijeu(bool r)
         ui->cfinminijeu->setText("REUSSITE");
     else
         ui->cfinminijeu->setText("ECHEC");
+    set_pop();
     ui->stackedWidget->setCurrentIndex(5);
 }
 
@@ -420,14 +441,14 @@ void MainWindow::on_blabarriere_clicked()
 
 void MainWindow::event()
 {
-    int r = rand()%5;
+    int r = 1; //rand()%5;
     switch(r)
     {
         case 0:
             ui->stackedWidget->setCurrentIndex(4);
             break;
         case 1:
-            ui->stackedWidget->setCurrentIndex(5);
+            ui->stackedWidget->setCurrentIndex(9);
             break;
         case 2:
             ui->stackedWidget->setCurrentIndex(6);
@@ -456,4 +477,9 @@ void MainWindow::on_blababa_clicked()
     delete _l;
     creer_lab();
     fin_minijeu(false);
+}
+
+void MainWindow::on_bvaccontinuer_clicked()
+{
+    fin();
 }

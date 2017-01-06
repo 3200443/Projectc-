@@ -6,6 +6,8 @@
 #include "Federation.hh"
 #include "NFederation.hh"
 #include "Labyrinthe.hh"
+#include "Logicos.h"
+#include "Guerre.h"
 
 #include <QListWidget>
 #include <QMainWindow>
@@ -65,6 +67,8 @@ private slots:
 
     void on_blababa_clicked();
 
+    void on_bvaccontinuer_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -76,7 +80,7 @@ private:
 
     std::vector<Pays*> _monde;
 
-    int _popularite[4];
+    int _popularite[5];
 
     QString _notes;
 
@@ -101,6 +105,8 @@ private:
     void event();
 
     void creer_lab();
+
+    void set_pop();
 };
 
 #endif // MAINWINDOW_HH
