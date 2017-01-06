@@ -104,6 +104,11 @@ int Pays::get_nbhab()
     return this->_nbHab;
 }
 
+std::map<Parti, int> Pays::get_partis() const
+{
+    return this->_partis;
+}
+
 Pays::~Pays()
 {
     

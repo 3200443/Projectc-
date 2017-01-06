@@ -70,9 +70,12 @@ Labyrinthe::Labyrinthe(int difficultee)
         case 1:
             creer_lab(4, _tete);
             break;
-        case 3:
+        case 2:
             creer_lab(9,_tete);
             break;
+        default:
+            creer_lab(3,_tete);
+            std::cout << "ERROR 1" << std::endl;
     }
     creer_lab_fin(_tete);
 }

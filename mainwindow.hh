@@ -47,7 +47,7 @@ private slots:
 
     void on_bfin_clicked();
 
-    void on_listWidget_itemClicked(QListWidgetItem *item);
+    void on_listWidget_itemClicked();
 
     void on_bsonder_clicked();
 
@@ -68,8 +68,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    void mode1();
-
     int _nbpays;
 
     int _tour; //note beacause count() is really unreliable
@@ -78,11 +76,17 @@ private:
 
     std::vector<Pays*> _monde;
 
-    float _popularite[5];
+    int _popularite[4];
 
     QString _notes;
 
     short _sondages;
+
+    Labyrinthe * _l;
+
+    int _difficulte;
+
+    void mode1();
 
     void fin();
 
@@ -92,13 +96,11 @@ private:
 
     int gerer_lab(int i);
 
-    Labyrinthe * _l;
-
     void fin_minijeu(bool r);
 
-    void event(Pays *iter);
+    void event();
 
-    void creer_lab(int d);
+    void creer_lab();
 };
 
 #endif // MAINWINDOW_HH

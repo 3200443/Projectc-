@@ -27,6 +27,7 @@ Jeu::~Jeu()
 
 void Jeu::on_bvalider_jeu2_valeur_clicked()
 {
+<<<<<<< HEAD
 
     if(_jeu_logicos->get_cmt() > 0){
 
@@ -40,6 +41,10 @@ void Jeu::on_bvalider_jeu2_valeur_clicked()
             case 2 : ui->conseil->setText("Il faut un nombre plus petit !");
                     break;
         }
+=======
+    _cmt_jeu2 = 0;
+    _val_rand = rand()%100;
+>>>>>>> 44c34ee
 
      }
 
