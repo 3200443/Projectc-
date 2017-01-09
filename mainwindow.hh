@@ -8,6 +8,7 @@
 #include "Labyrinthe.hh"
 #include "Logicos.h"
 #include "Guerre.h"
+#include "Calcul.h"
 
 #include <QListWidget>
 #include <QMainWindow>
@@ -69,6 +70,46 @@ private slots:
 
     void on_bvaccontinuer_clicked();
 
+    void on_bvalider_jeu2_valeur_clicked();
+
+    void on_next_jeu3_clicked();
+
+    void on_go_timer_clicked();
+
+    void on_pushButton_13_clicked();
+
+    void on_pushButton_8_clicked();
+
+    void on_pushButton_5_clicked();
+
+    void on_pushButton_11_clicked();
+
+    void on_pushButton_7_clicked();
+
+    void on_pushButton_6_clicked();
+
+    void on_pushButton_12_clicked();
+
+    void on_pushButton_9_clicked();
+
+    void on_pushButton_10_clicked();
+
+    void on_next_jeu3_2_clicked();
+
+    void on_go_jeu_calcul_clicked();
+
+    void on_valider_calcul1_clicked();
+
+    void on_valider_calcul2_clicked();
+
+    void on_valider_calcul3_clicked();
+
+    void on_valider_calcul4_clicked();
+
+    void on_valider_calcul5_clicked();
+
+    void on_next_jeu3_3_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -90,6 +131,13 @@ private:
 
     int _difficulte;
 
+
+    Logicos *_jeu_logicos;
+    Guerre *_jeu_guerre;
+    Calcul *_jeu_calcul;
+    QTimer *_m_timer; // timer jeu_guerre
+
+
     void mode1();
 
     void fin();
@@ -107,6 +155,16 @@ private:
     void creer_lab();
 
     void set_pop();
+
+    void Jeu_button();
+
+    void chronometre();
+
+    void Calcul_pop_jeu3();
+
+    void Action_jeu_clic();
+
+    void Fin_jeu_calcul();
 };
 
 #endif // MAINWINDOW_HH

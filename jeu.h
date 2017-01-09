@@ -59,8 +59,6 @@ private:
     Guerre *_jeu_guerre;
     Calcul *_jeu_calcul;
 
-    float _popularite[5];
-
     QTimer *_m_timer; // timer jeu_guerre
 
 

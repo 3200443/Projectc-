@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>762</width>
-    <height>639</height>
+    <height>656</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -42,7 +42,7 @@
        <bool>false</bool>
       </property>
       <property name="currentIndex">
-       <number>9</number>
+       <number>8</number>
       </property>
       <widget class="QWidget" name="page1">
        <layout class="QGridLayout" name="gridLayout">
@@ -2000,8 +2000,8 @@
        </layout>
       </widget>
       <widget class="QWidget" name="page">
-       <layout class="QVBoxLayout" name="verticalLayout_37">
-        <item>
+       <layout class="QGridLayout" name="gridLayout_8">
+        <item row="0" column="0">
          <layout class="QVBoxLayout" name="verticalLayout_35">
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -2023,7 +2023,7 @@
               <item>
                <widget class="QLabel" name="label_19">
                 <property name="text">
-                 <string>Jeu pour le partie logicos</string>
+                 <string>Jeu pour le partie Logicos</string>
                 </property>
                </widget>
               </item>
@@ -2043,7 +2043,7 @@
              </layout>
             </item>
             <item>
-             <spacer name="verticalSpacer_32">
+             <spacer name="verticalSpacer_15">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
@@ -2059,7 +2059,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QTextBrowser" name="Enonce_3">
+             <widget class="QTextBrowser" name="Enonce_2">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -2078,16 +2078,16 @@
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Le but de ce jeu est de retrouvé la valeur exacte choisis par l'ordinateur, comprise entre 0 et 100&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Choisissez d'abord un niveau de difficulté de jeu.&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;En fonction du niveau de difficulté choisis, vous gagnez :&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Facile : Vous avez 10 essais. &lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;-&amp;gt; rapporte +5 points dans le parti logicos&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;-&amp;gt; rapporte +2 points dans le parti Logicos&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Normal : Vous avez 7 essais.  &lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;-&amp;gt; rapporte +7 points dans le parti logicos&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;-&amp;gt; rapporte +4 points dans le parti Logicos&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Facile : Vous avez 5 essais. &lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;-&amp;gt; rapporte +10 points dans le parti logicos&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;-&amp;gt; rapporte +6 points dans le parti Logicos&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
@@ -2131,7 +2131,7 @@ p, li { white-space: pre-wrap; }
                </spacer>
               </item>
               <item>
-               <widget class="QSpinBox" name="spin_reponse_2">
+               <widget class="QSpinBox" name="spin_reponse">
                 <property name="minimumSize">
                  <size>
                   <width>70</width>
@@ -2141,7 +2141,7 @@ p, li { white-space: pre-wrap; }
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="bvalider_jeu2_valeur_2">
+               <widget class="QPushButton" name="bvalider_jeu2_valeur">
                 <property name="text">
                  <string>Valider</string>
                 </property>
@@ -2194,7 +2194,7 @@ p, li { white-space: pre-wrap; }
                </widget>
               </item>
               <item>
-               <widget class="QTextEdit" name="coups_restants_2">
+               <widget class="QTextEdit" name="coups_restants">
                 <property name="maximumSize">
                  <size>
                   <width>30</width>
@@ -2218,7 +2218,7 @@ p, li { white-space: pre-wrap; }
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="conseil_2">
+               <widget class="QLabel" name="conseil">
                 <property name="text">
                  <string/>
                 </property>
@@ -2245,14 +2245,14 @@ p, li { white-space: pre-wrap; }
                </spacer>
               </item>
               <item>
-               <widget class="QLabel" name="Resultat_3">
+               <widget class="QLabel" name="Resultat_2">
                 <property name="text">
                  <string>Le resultat est </string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QTextBrowser" name="reponse_2">
+               <widget class="QTextBrowser" name="reponse">
                 <property name="maximumSize">
                  <size>
                   <width>50</width>
@@ -2277,10 +2277,10 @@ p, li { white-space: pre-wrap; }
              </layout>
             </item>
             <item>
-             <widget class="QTextEdit" name="resul_pop_3"/>
+             <widget class="QTextEdit" name="resul_pop_2"/>
             </item>
             <item>
-             <spacer name="verticalSpacer_33">
+             <spacer name="verticalSpacer_32">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
@@ -2308,16 +2308,16 @@ p, li { white-space: pre-wrap; }
                </spacer>
               </item>
               <item>
-               <widget class="QPushButton" name="next_jeu3_2">
+               <widget class="QPushButton" name="next_jeu3">
                 <property name="text">
-                 <string>Jeu suivant</string>
+                 <string>Cliquez ici pour finir le jeu</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_4">
+               <widget class="QPushButton" name="pushButton_3">
                 <property name="text">
-                 <string>Quitter</string>
+                 <string>Retour page d'accueil</string>
                 </property>
                </widget>
               </item>
@@ -2402,7 +2402,7 @@ p, li { white-space: pre-wrap; }
              </spacer>
             </item>
             <item>
-             <widget class="QTextBrowser" name="Enonce_4">
+             <widget class="QTextBrowser" name="Enonce_3">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -2669,10 +2669,10 @@ p, li { white-space: pre-wrap; }
              </layout>
             </item>
             <item>
-             <widget class="QTextEdit" name="Resultat_4"/>
+             <widget class="QTextEdit" name="Resultat_3"/>
             </item>
             <item>
-             <spacer name="verticalSpacer_34">
+             <spacer name="verticalSpacer_33">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
@@ -2700,16 +2700,16 @@ p, li { white-space: pre-wrap; }
                </spacer>
               </item>
               <item>
-               <widget class="QPushButton" name="next_jeu3_3">
+               <widget class="QPushButton" name="next_jeu3_2">
                 <property name="text">
-                 <string>Jeu suivant</string>
+                 <string>Cliquez ici pour finir le jeu</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_14">
+               <widget class="QPushButton" name="pushButton_4">
                 <property name="text">
-                 <string>Quitter</string>
+                 <string>Retour page d'accueil</string>
                 </property>
                </widget>
               </item>
@@ -2739,7 +2739,7 @@ p, li { white-space: pre-wrap; }
         <item row="0" column="0">
          <layout class="QVBoxLayout" name="verticalLayout_34">
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout_38">
+           <layout class="QVBoxLayout" name="verticalLayout_37">
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_37">
               <item>
@@ -2778,7 +2778,7 @@ p, li { white-space: pre-wrap; }
              </layout>
             </item>
             <item>
-             <spacer name="verticalSpacer_35">
+             <spacer name="verticalSpacer_34">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
@@ -2794,7 +2794,7 @@ p, li { white-space: pre-wrap; }
              </spacer>
             </item>
             <item>
-             <widget class="QTextBrowser" name="Enonce_5">
+             <widget class="QTextBrowser" name="Enonce_4">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -2856,7 +2856,7 @@ p, li { white-space: pre-wrap; }
              </layout>
             </item>
             <item>
-             <spacer name="verticalSpacer_36">
+             <spacer name="verticalSpacer_35">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
@@ -2949,6 +2949,9 @@ p, li { white-space: pre-wrap; }
               </item>
               <item>
                <widget class="QPushButton" name="valider_calcul1">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
                 <property name="text">
                  <string>Valider</string>
                 </property>
@@ -3070,6 +3073,9 @@ p, li { white-space: pre-wrap; }
               </item>
               <item>
                <widget class="QPushButton" name="valider_calcul2">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
                 <property name="text">
                  <string>Valider</string>
                 </property>
@@ -3191,6 +3197,9 @@ p, li { white-space: pre-wrap; }
               </item>
               <item>
                <widget class="QPushButton" name="valider_calcul3">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
                 <property name="text">
                  <string>Valider</string>
                 </property>
@@ -3312,6 +3321,9 @@ p, li { white-space: pre-wrap; }
               </item>
               <item>
                <widget class="QPushButton" name="valider_calcul4">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
                 <property name="text">
                  <string>Valider</string>
                 </property>
@@ -3433,6 +3445,9 @@ p, li { white-space: pre-wrap; }
               </item>
               <item>
                <widget class="QPushButton" name="valider_calcul5">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
                 <property name="text">
                  <string>Valider</string>
                 </property>
@@ -3477,7 +3492,7 @@ p, li { white-space: pre-wrap; }
              </layout>
             </item>
             <item>
-             <spacer name="verticalSpacer_37">
+             <spacer name="verticalSpacer_36">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
@@ -3493,10 +3508,10 @@ p, li { white-space: pre-wrap; }
              </spacer>
             </item>
             <item>
-             <widget class="QTextEdit" name="Resultat_5"/>
+             <widget class="QTextEdit" name="Resultat_4"/>
             </item>
             <item>
-             <spacer name="verticalSpacer_38">
+             <spacer name="verticalSpacer_37">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
@@ -3524,16 +3539,16 @@ p, li { white-space: pre-wrap; }
                </spacer>
               </item>
               <item>
-               <widget class="QPushButton" name="next_jeu3_4">
+               <widget class="QPushButton" name="next_jeu3_3">
                 <property name="text">
-                 <string>Jeu suivant</string>
+                 <string>Cliquez ici pour finir le jeu</string>
                 </property>
                </widget>
               </item>
               <item>
                <widget class="QPushButton" name="pushButton_23">
                 <property name="text">
-                 <string>Quitter</string>
+                 <string>Retour page d'accueil</string>
                 </property>
                </widget>
               </item>
@@ -3761,6 +3776,54 @@ p, li { white-space: pre-wrap; }
     <hint type="destinationlabel">
      <x>360</x>
      <y>191</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>bretourecrantitre</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>463</x>
+     <y>569</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>76</x>
+     <y>51</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>bretourecrantitre</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>463</x>
+     <y>569</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>76</x>
+     <y>51</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_23</sender>
+   <signal>clicked()</signal>
+   <receiver>bretourecrantitre</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>463</x>
+     <y>569</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>76</x>
+     <y>51</y>
     </hint>
    </hints>
   </connection>

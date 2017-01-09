@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     Tyrannie.cpp \
     Labyrinthe.cpp \
     Guerre.cpp \
-    Logicos.cpp
+    Logicos.cpp \
+    Calcul.cpp
 
 HEADERS  += mainwindow.hh \
     Democratie.hh \
@@ -34,7 +35,8 @@ HEADERS  += mainwindow.hh \
     Tyrannie.hh \
     Labyrinthe.hh \
     Guerre.h \
-    Logicos.h
+    Logicos.h \
+    Calcul.h
 
 FORMS    += mainwindow.ui
 

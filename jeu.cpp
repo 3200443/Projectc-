@@ -10,12 +10,12 @@ Jeu::Jeu(QWidget *parent) : QMainWindow(parent), ui(new Ui::Jeu){
 
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
-
-
-    int difficulte = 2;
     _jeu_logicos = new Logicos(difficulte);  // facile = 0, normale = 1; difficile = 2;
     _jeu_guerre = new Guerre();
     _jeu_calcul = new Calcul();
+
+
+    int difficulte = 2;
 }
 
 Jeu::~Jeu()
@@ -311,10 +311,8 @@ void Jeu::on_go_jeu_calcul_clicked()
 
 
 void Jeu::Fin_jeu_calcul(){
-
     QString resu_jeu_calc = QString ("Vous avez gagnez %1 points pour le parti Matheu").arg(_jeu_calcul->get_cmt_pts());
     ui->Resultat_4->setText(resu_jeu_calc);
-
 }
 
 void Jeu::on_valider_calcul1_clicked()
