@@ -23,11 +23,12 @@ Jeu::~Jeu()
 }
 
 
+
+
 // ======= Jeu Logicos =========
 
 void Jeu::on_bvalider_jeu2_valeur_clicked()
 {
-<<<<<<< HEAD
 
     if(_jeu_logicos->get_cmt() > 0){
 
@@ -41,10 +42,6 @@ void Jeu::on_bvalider_jeu2_valeur_clicked()
             case 2 : ui->conseil->setText("Il faut un nombre plus petit !");
                     break;
         }
-=======
-    _cmt_jeu2 = 0;
-    _val_rand = rand()%100;
->>>>>>> 44c34ee
 
      }
 
@@ -58,9 +55,6 @@ void Jeu::on_bvalider_jeu2_valeur_clicked()
          ui->reponse->setText(reponse);
 
 
-
-
-// On avais dit un return avec la popularite mais la du coup jpeux rien retourner :/
 
          if(_jeu_logicos->get_reussi() == true){
 
