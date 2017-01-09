@@ -1,5 +1,4 @@
 #include "Guerre.h"
-
 #include <cstdlib>
 
 Guerre::Guerre()
@@ -7,10 +6,19 @@ Guerre::Guerre()
     _cmt = 0;
     _cmt_chrono = 0;
     _temps_final = 0;
+    _score_jeu = 0;
 }
 
 int Guerre::gene_val_rand(){
     return _val_rand = rand()%9;
+}
+
+int Guerre::get_score_jeu(){
+    return _score_jeu;
+}
+
+void Guerre::set_score_jeu(int nb){
+    _score_jeu = nb;
 }
 
 

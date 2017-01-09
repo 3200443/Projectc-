@@ -15,14 +15,13 @@ Jeu::Jeu(QWidget *parent) : QMainWindow(parent), ui(new Ui::Jeu){
     int difficulte = 2;
     _jeu_logicos = new Logicos(difficulte);  // facile = 0, normale = 1; difficile = 2;
     _jeu_guerre = new Guerre();
+    _jeu_calcul = new Calcul();
 }
 
 Jeu::~Jeu()
 {
     delete ui;
 }
-
-
 
 
 // ======= Jeu Logicos =========
@@ -55,11 +54,10 @@ void Jeu::on_bvalider_jeu2_valeur_clicked()
          ui->reponse->setText(reponse);
 
 
-
          if(_jeu_logicos->get_reussi() == true){
 
              ui->resul_pop_2->setText(" Vous avez gagnez, +5 points dans la popularite du parti Logicos ");
-            _popularite[2] += _jeu_logicos->get_score_jeu();
+             _jeu_logicos->set_score_jeu();
 
          }else{
               ui->resul_pop_2->setText(" Vous avez perdu, pas de points dans la popularite du parti Logicos ");
@@ -67,7 +65,18 @@ void Jeu::on_bvalider_jeu2_valeur_clicked()
     }
 
 }
+
+
+
+void Jeu::on_next_jeu3_clicked()    // Bouton fin du jeu Logicos
+{
+    _popularite[2] += _jeu_logicos->get_score_jeu();    // 0 si perdu (par defaut)  |   +5pts sinon
+    ui->stackedWidget->setCurrentIndex(2);
+}
+
 // ======= Fin Jeu Logicos =========
+
+
 
 
 // ====== Table de page du début, delete par la suite ======
@@ -82,9 +91,26 @@ void Jeu::on_Jeu_3_clicked()
     ui->stackedWidget->setCurrentIndex(2);
 }
 
-void Jeu::on_next_jeu3_clicked()    // Fin jeu logicos
+void Jeu::on_Jeu_4_clicked()
 {
-     ui->stackedWidget->setCurrentIndex(2);
+    ui->stackedWidget->setCurrentIndex(3);
+}
+
+
+// ====== Boutons retours aux menu pdt le jeu ======
+void Jeu::on_pushButton_3_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void Jeu::on_pushButton_4_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void Jeu::on_pushButton_23_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 
@@ -157,11 +183,13 @@ void Jeu::Calcul_pop_jeu3(){
     if(_jeu_guerre->get_temps_final() <= 15 ){
 
         ui->Resultat_3->setText("Temps inferieur a 15 s : popularite parti agressif + 10 points");
-        _popularite[1] += 10;
+        _jeu_guerre->set_score_jeu(10);
+        //_popularite[1] += 10;
 
     }else if(15 < _jeu_guerre->get_temps_final() && _jeu_guerre->get_temps_final() < 30){
         ui->Resultat_3->setText("Temps compris entre 15 et 30 s :popularite parti agressif + 5 points");
-        _popularite[1] += 5;
+        _jeu_guerre->set_score_jeu(5);
+       // _popularite[1] += 5;
 
     }else{
         ui->Resultat_3->setText("Temps supérieur a 30 s : pas de points gagnes pour le parti agressif");
@@ -232,23 +260,31 @@ void Jeu::on_pushButton_13_clicked()
    ui->pushButton_13->setEnabled(false);
 }
 
+
+
+
 void Jeu::on_next_jeu3_2_clicked()
 {
+    _popularite[1] = _jeu_guerre->get_score_jeu();
     ui->stackedWidget->setCurrentIndex(3);
 }
 
-void Jeu::on_Jeu_4_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(3);
-}
+// =========== Fin Jeu Guerre ===============
+
+
+
 
 // ============== Jeu calcul =============
 
 void Jeu::on_go_jeu_calcul_clicked()
 {
     ui->go_jeu_calcul->setEnabled(false);
-    _cmt_pts = 0;
-    _cmt = 0;
+
+    ui->valider_calcul1->setEnabled(true);
+    ui->valider_calcul2->setEnabled(true);
+    ui->valider_calcul3->setEnabled(true);
+    ui->valider_calcul4->setEnabled(true);
+    ui->valider_calcul5->setEnabled(true);
 
     ui->res_calcul1->setMaximum(1000);
     ui->res_calcul2->setMaximum(1000);
@@ -256,127 +292,109 @@ void Jeu::on_go_jeu_calcul_clicked()
     ui->res_calcul4->setMaximum(1000);
     ui->res_calcul5->setMaximum(1000);
 
-    int  val1_equa1 = rand()%15+5;  // 5 - 20
-    int  val2_equa1 = rand()%15+5;  // 5 - 20
-    _resultat_equa1 = val1_equa1 * val2_equa1;
 
-    QString calc1 = QString (" %1 x %2 ").arg(val1_equa1).arg(val2_equa1);
+    QString calc1 = QString (" %1 x %2 ").arg(_jeu_calcul->get_val1_equa1()).arg(_jeu_calcul->get_val2_equa1());
     ui->calcul1->setText(calc1);
 
-
-    int  val1_equa2 = rand()%20+10; // 10 - 30
-    int  val2_equa2 = rand()%20+10; // 10 - 30
-    _resultat_equa2 = val1_equa2 * val2_equa2;
-
-    QString calc2 = QString (" %1 x %2 ").arg(val1_equa2).arg(val2_equa2);
+    QString calc2 = QString (" %1 x %2 ").arg(_jeu_calcul->get_val1_equa2()).arg(_jeu_calcul->get_val2_equa2());
     ui->calcul2->setText(calc2);
 
-
-    int  val1_equa3 = rand()%10+10; // 10 - 20
-    int  val2_equa3 = rand()%30+10; // 10 - 40
-    _resultat_equa3 = val1_equa3 * val2_equa3;
-
-    QString calc3 = QString (" %1 x %2 ").arg(val1_equa3).arg(val2_equa3);
+    QString calc3 = QString (" %1 x %2 ").arg(_jeu_calcul->get_val1_equa3()).arg(_jeu_calcul->get_val2_equa3());
     ui->calcul3->setText(calc3);
 
-    int  val1_equa4 = rand()%20;    // 0 - 20
-    int  val2_equa4 = rand()%50;    // 0 - 50
-    _resultat_equa4 = val1_equa4 * val2_equa4;
-
-    QString calc4 = QString (" %1 x %2 ").arg(val1_equa4).arg(val2_equa4);
+    QString calc4 = QString (" %1 x %2 ").arg(_jeu_calcul->get_val1_equa4()).arg(_jeu_calcul->get_val2_equa4());
     ui->calcul4->setText(calc4);
 
-    int  val1_equa5 = rand()%10;   // 0 - 10
-    int  val2_equa5 = rand()%100;   // 0 - 100
-    _resultat_equa5 = val1_equa5 * val2_equa5;
-
-    QString calc5 = QString (" %1 x %2 = ").arg(val1_equa5).arg(val2_equa5);
+    QString calc5 = QString (" %1 x %2 = ").arg(_jeu_calcul->get_val1_equa5()).arg(_jeu_calcul->get_val2_equa5());
     ui->calcul5->setText(calc5);
 }
 
 
 void Jeu::Fin_jeu_calcul(){
 
-    QString resu_jeu_calc = QString ("Vous avez gagnez %1 points, vous gagner donc %1 points dans le parti Matheu").arg(_cmt_pts);
+    QString resu_jeu_calc = QString ("Vous avez gagnez %1 points pour le parti Matheu").arg(_jeu_calcul->get_cmt_pts());
     ui->Resultat_4->setText(resu_jeu_calc);
-
-    _popularite[3] += _cmt_pts;//################################################################################################################
 
 }
 
 void Jeu::on_valider_calcul1_clicked()
 {
     ui->valider_calcul1->setEnabled(false);
-   _cmt++;
+    _jeu_calcul->increment_cmt();
 
-    if(ui->res_calcul1->value() == _resultat_equa1){
-        _cmt_pts++;
+    if(ui->res_calcul1->value() == _jeu_calcul->get_resultat_equa1()){
+       _jeu_calcul->increment_cmt_pts();
         ui->valider_calcul1->setText("Bon resultat");
     }else{
         ui->valider_calcul1->setText("Mauvais resultat");
     }
 
-    if(_cmt == 5) Fin_jeu_calcul();
+    if(_jeu_calcul->get_cmt() == 5) Fin_jeu_calcul();
 }
 
 void Jeu::on_valider_calcul2_clicked()
 {
     ui->valider_calcul2->setEnabled(false);
-    _cmt++;
+    _jeu_calcul->increment_cmt();
 
-    if(ui->res_calcul2->value() == _resultat_equa2){
-        _cmt_pts++;
+    if(ui->res_calcul2->value() == _jeu_calcul->get_resultat_equa2()){
+        _jeu_calcul->increment_cmt_pts();
         ui->valider_calcul2->setText("Bon resultat");
     }else{
         ui->valider_calcul2->setText("Mauvais resultat");
     }
 
-    if(_cmt == 5) Fin_jeu_calcul();
+    if(_jeu_calcul->get_cmt() == 5) Fin_jeu_calcul();
 }
 
 void Jeu::on_valider_calcul3_clicked()
 {
     ui->valider_calcul3->setEnabled(false);
-    _cmt++;
+    _jeu_calcul->increment_cmt();
 
-    if(ui->res_calcul3->value() == _resultat_equa3){
-        _cmt_pts++;
+    if(ui->res_calcul3->value() == _jeu_calcul->get_resultat_equa3()){
+        _jeu_calcul->increment_cmt_pts();
         ui->valider_calcul3->setText("Bon resultat");
     }else{
         ui->valider_calcul3->setText("Mauvais resultat");
     }
 
-    if(_cmt == 5) Fin_jeu_calcul();
+    if(_jeu_calcul->get_cmt() == 5) Fin_jeu_calcul();
 }
 
 void Jeu::on_valider_calcul4_clicked()
 {
     ui->valider_calcul4->setEnabled(false);
-    _cmt++;
+    _jeu_calcul->increment_cmt();
 
-    if(ui->res_calcul4->value() == _resultat_equa4){
-        _cmt_pts++;
+    if(ui->res_calcul4->value() == _jeu_calcul->get_resultat_equa4()){
+        _jeu_calcul->increment_cmt_pts();
         ui->valider_calcul4->setText("Bon resultat");
     }else{
         ui->valider_calcul4->setText("Mauvais resultat");
     }
 
-    if(_cmt == 5) Fin_jeu_calcul();
+    if(_jeu_calcul->get_cmt() == 5) Fin_jeu_calcul();
 }
 
 void Jeu::on_valider_calcul5_clicked()
 {
     ui->valider_calcul5->setEnabled(false);
-    _cmt++;
+    _jeu_calcul->increment_cmt();
 
-    if(ui->res_calcul5->value() == _resultat_equa5){
-        _cmt_pts++;
+    if(ui->res_calcul5->value() == _jeu_calcul->get_resultat_equa5()){
+        _jeu_calcul->increment_cmt_pts();
         ui->valider_calcul5->setText("Bon resultat");
     }else{
         ui->valider_calcul5->setText("Mauvais resultat");
     }
 
-    if(_cmt == 5) Fin_jeu_calcul();
+    if(_jeu_calcul->get_cmt() == 5) Fin_jeu_calcul();
 }
 
+
+void Jeu::on_Resultat_4_destroyed()
+{
+    _popularite[3] += _jeu_calcul->get_cmt_pts();
+}
 

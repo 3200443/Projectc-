@@ -9,6 +9,9 @@ public:
 
     int gene_val_rand();
 
+    int get_score_jeu();
+    void set_score_jeu(int nb);
+
     int get_cmt();
     void increment_cmt();
 
@@ -23,6 +26,7 @@ private:
     int _cmt;
     float _cmt_chrono;
     float _temps_final;
+    int _score_jeu;
 };
 
 #endif // GUERRE_H

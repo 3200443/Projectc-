@@ -3,9 +3,17 @@
 
 Logicos::Logicos(int difficulte)
 {
-   //Init
-    _cmt = (difficulte+1) * 2 ;
-    _score_jeu = (difficulte+1) * 2 ;  // facile = 2, normale = 4; difficile = 6;
+    switch(difficulte){
+         case 0 : _cmt = 10;
+            break;
+         case 1 : _cmt = 7;
+            break;
+         case 2 : _cmt = 5;
+            break;
+    }
+
+    _difficulte = difficulte;
+    _score_jeu = 0;
     _val_rand = rand()%100;
     _reussi = false;
 
@@ -22,6 +30,10 @@ int Logicos::get_val_rand(){
 
 int Logicos::get_score_jeu(){
     return _score_jeu;
+}
+
+void Logicos::set_score_jeu(){
+    _score_jeu = (_difficulte+1) * 2 ;  // facile = 2, normale = 4; difficile = 6;
 }
 
 int Logicos::get_cmt(){
