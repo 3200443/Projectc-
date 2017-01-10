@@ -38,11 +38,15 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->VACANCES->setPalette(*palette);
     ui->VACANCES->setAlignment(Qt::AlignHCenter);
     ui->VACANCES->setText("Est ce reellement le moment de prendre des vacances??");
+    _m_timer = new QTimer(this); // On ne le delete pls on le guarde en permanance pourne pas avoir d erreur avec le connect
+    connect(_m_timer, SIGNAL(timeout()), this, SLOT(Jeu_button()));
+    connect(_m_timer, SIGNAL(timeout()), this, SLOT(chronometre()));
     delete palette;
 }
 
 MainWindow::~MainWindow()
 {
+    delete _m_timer;
     delete ui;
 }
 
@@ -321,7 +325,7 @@ bool MainWindow::resultat()
     }
     if(moy/(float)temp[5] > 60)
         return 1;
-    return 0; //TODO:PLACEHOLDER;
+    return 0;
 }
 
 void MainWindow::on_listWidget_itemClicked()
@@ -404,7 +408,7 @@ int MainWindow::gerer_lab(int i)
             ui->bporte3->setEnabled(true);
             return temp;
         case 4:
-            //TODO: AJOUTER LA POPULARITE
+            _popularite[0] += 5;
             delete _l;
             creer_lab();
             fin_minijeu(true);
@@ -481,7 +485,6 @@ void MainWindow::on_bquit3_clicked()
 
 void MainWindow::on_blababa_clicked()
 {
-    //TODO: POPULARITE
     delete _l;
     creer_lab();
     fin_minijeu(false);
@@ -589,9 +592,6 @@ void MainWindow::chronometre(){
 void MainWindow::on_go_timer_clicked()
 {
     ui->go_timer->setEnabled(false);
-    _m_timer = new QTimer(this);
-    connect(_m_timer, SIGNAL(timeout()), this, SLOT(Jeu_button()));
-    connect(_m_timer, SIGNAL(timeout()), this, SLOT(chronometre()));
     _m_timer->start(500);
 }
 
@@ -681,8 +681,8 @@ void MainWindow::on_next_jeu3_2_clicked()
     int temp  = _jeu_guerre->get_score_jeu();
     _popularite[1] += temp;
     delete _jeu_guerre;
-    delete _m_timer;
     _jeu_guerre = new Guerre();
+    init_int_jeu_Gue();
     fin_minijeu((temp > 0 ? true : false));
 }
 
@@ -806,5 +806,20 @@ void MainWindow::on_next_jeu3_3_clicked()
     _popularite[3] += temp;
     delete _jeu_calcul;
     _jeu_calcul = new Calcul();
-    fin_minijeu(temp > 0? true : false);
+    init_int_jeu_Cal();
+    fin_minijeu(temp > 0 ? true : false);
+}
+
+void MainWindow::init_int_jeu_Gue()
+{
+    ui->go_timer->setEnabled(true);
+}
+
+void MainWindow::init_int_jeu_Cal()
+{
+     ui->go_jeu_calcul->setEnabled(true);
+}
+void MainWindow::init_int_jeu_Log()
+{
+    ui->bvalider_jeu2_valeur->setEnabled(true);
 }

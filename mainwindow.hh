@@ -110,6 +110,16 @@ private slots:
 
     void on_next_jeu3_3_clicked();
 
+    void Jeu_button();
+
+    void chronometre();
+
+    void Calcul_pop_jeu3();
+
+    void Action_jeu_clic();
+
+    void Fin_jeu_calcul();
+
 private:
     Ui::MainWindow *ui;
 
@@ -156,15 +166,11 @@ private:
 
     void set_pop();
 
-    void Jeu_button();
+    void init_int_jeu_Gue();
 
-    void chronometre();
+    void init_int_jeu_Cal();
 
-    void Calcul_pop_jeu3();
-
-    void Action_jeu_clic();
-
-    void Fin_jeu_calcul();
+    void init_int_jeu_Log();
 };
 
 #endif // MAINWINDOW_HH
