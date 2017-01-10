@@ -33,7 +33,15 @@ int Logicos::get_score_jeu(){
 }
 
 void Logicos::set_score_jeu(){
-    _score_jeu = (_difficulte+1) * 2 ;  // facile = 2, normale = 4; difficile = 6;
+    switch(_difficulte){
+         case 0 : _score_jeu = 2;
+            break;
+         case 1 : _score_jeu = 4;
+            break;
+         case 2 : _score_jeu = 6;
+            break;
+    }
+
 }
 
 int Logicos::get_cmt(){

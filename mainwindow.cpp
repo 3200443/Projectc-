@@ -22,7 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     //ui->cnbpays->setValidator(new QIntValidator(2,20,this));
-    ui->spinBox->setRange(2,NB_PAYS_MAX);
+    ui->spinBox->setRange(5,NB_PAYS_MAX);
     ui->spinBox->setValue(2);
     ui->cnomj->setText("Joueur");
     ui->stackedWidget->setCurrentIndex(0);
@@ -495,6 +495,11 @@ void MainWindow::on_bvaccontinuer_clicked()
     fin();
 }
 
+
+
+
+// ========== Jeu Logicos ============
+
 void MainWindow::on_bvalider_jeu2_valeur_clicked()
 {
     if(_jeu_logicos->get_cmt() > 0){
@@ -523,9 +528,10 @@ void MainWindow::on_bvalider_jeu2_valeur_clicked()
 
 
          if(_jeu_logicos->get_reussi() == true){
-
-             ui->resul_pop_2->setText(" Vous avez gagnez, +5 points dans la popularite du parti Logicos ");
              _jeu_logicos->set_score_jeu();
+             QString score = QString ("Vous avez gagnez, +%1 points dans la popularite du parti Logicos ").arg(_jeu_logicos->get_score_jeu());
+             ui->resul_pop_2->setText(score);
+
 
          }else{
               ui->resul_pop_2->setText(" Vous avez perdu, pas de points dans la popularite du parti Logicos ");
@@ -536,11 +542,15 @@ void MainWindow::on_bvalider_jeu2_valeur_clicked()
 void MainWindow::on_next_jeu3_clicked()
 {
     int temp= _jeu_logicos->get_score_jeu();
-    _popularite[2] += temp;    // 0 si perdu (par defaut)  |   +5pts sinon
+    _popularite[2] += temp;
     delete _jeu_logicos;
     _jeu_logicos =  new Logicos(_difficulte);
     fin_minijeu(temp > 0 ? true : false);
 }
+
+// ========== Jeu Guerre ============
+
+
 void MainWindow::Jeu_button(){
 
     ui->nb_clic->setText("0");
@@ -686,6 +696,8 @@ void MainWindow::on_next_jeu3_2_clicked()
     fin_minijeu((temp > 0 ? true : false));
 }
 
+// ========== Jeu Calcul ============
+
 void MainWindow::on_go_jeu_calcul_clicked()
 {
     ui->go_jeu_calcul->setEnabled(false);
@@ -813,13 +825,38 @@ void MainWindow::on_next_jeu3_3_clicked()
 void MainWindow::init_int_jeu_Gue()
 {
     ui->go_timer->setEnabled(true);
+    ui->nb_clic->setText("");
+    ui->Resultat_3->setText("");
 }
 
 void MainWindow::init_int_jeu_Cal()
 {
      ui->go_jeu_calcul->setEnabled(true);
+     ui->calcul1->setText("");
+     ui->calcul2->setText("");
+     ui->calcul3->setText("");
+     ui->calcul4->setText("");
+     ui->calcul5->setText("");
+
+     ui->res_calcul1->setValue(0);
+     ui->res_calcul2->setValue(0);
+     ui->res_calcul3->setValue(0);
+     ui->res_calcul4->setValue(0);
+     ui->res_calcul5->setValue(0);
+
+     ui->valider_calcul1->setText("Valider");
+     ui->valider_calcul2->setText("Valider");
+     ui->valider_calcul3->setText("Valider");
+     ui->valider_calcul4->setText("Valider");
+     ui->valider_calcul5->setText("Valider");
+
+     ui->Resultat_4->setText("");
 }
 void MainWindow::init_int_jeu_Log()
 {
     ui->bvalider_jeu2_valeur->setEnabled(true);
+    ui->spin_reponse->setValue(0);
+    ui->reponse->setText("");
+    ui->coups_restants->setText("");
+    ui->resul_pop_2->setText("");
 }

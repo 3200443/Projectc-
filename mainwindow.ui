@@ -42,7 +42,7 @@
        <bool>false</bool>
       </property>
       <property name="currentIndex">
-       <number>6</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="page1">
        <layout class="QGridLayout" name="gridLayout">
@@ -861,7 +861,7 @@
             <item>
              <widget class="QStackedWidget" name="stackedWidget_2">
               <property name="currentIndex">
-               <number>0</number>
+               <number>1</number>
               </property>
               <widget class="QWidget" name="tselectionpays">
                <layout class="QGridLayout" name="gridLayout_6">
@@ -1162,7 +1162,7 @@
                                <number>24</number>
                               </property>
                               <property name="textVisible">
-                               <bool>false</bool>
+                               <bool>true</bool>
                               </property>
                               <property name="orientation">
                                <enum>Qt::Vertical</enum>
@@ -1189,7 +1189,7 @@
                                <number>24</number>
                               </property>
                               <property name="textVisible">
-                               <bool>false</bool>
+                               <bool>true</bool>
                               </property>
                               <property name="orientation">
                                <enum>Qt::Vertical</enum>
@@ -1216,7 +1216,7 @@
                                <number>24</number>
                               </property>
                               <property name="textVisible">
-                               <bool>false</bool>
+                               <bool>true</bool>
                               </property>
                               <property name="orientation">
                                <enum>Qt::Vertical</enum>
@@ -1240,7 +1240,7 @@
                                <number>24</number>
                               </property>
                               <property name="textVisible">
-                               <bool>false</bool>
+                               <bool>true</bool>
                               </property>
                               <property name="orientation">
                                <enum>Qt::Vertical</enum>
@@ -2366,7 +2366,7 @@ p, li { white-space: pre-wrap; }
               <item>
                <widget class="QLabel" name="label_15">
                 <property name="text">
-                 <string>Jeu pour le partie  agressif</string>
+                 <string>Jeu pour le partie guerre</string>
                 </property>
                </widget>
               </item>
