@@ -27,6 +27,5 @@ class Pays
 	protected:
 		int _nbHab;
 		const std::string _nom;
-		std::map<Parti,int> _partis;
-		//std::map<Parti,int> _partis;
+        std::map<Parti,int> _partis;
 };

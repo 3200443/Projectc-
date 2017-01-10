@@ -124,29 +124,20 @@ private:
     Ui::MainWindow *ui;
 
     int _nbpays;
-
     int _tour; //note beacause count() is really unreliable
-
     std::string _nomj;
-
     std::vector<Pays*> _monde;
-
     int _popularite[5];
-
-    QString _notes;
-
+    int _difficulte;
     short _sondages;
 
+    QString _notes;
+    QTimer *_m_timer; // timer jeu_guerre
+
     Labyrinthe * _l;
-
-    int _difficulte;
-
-
     Logicos *_jeu_logicos;
     Guerre *_jeu_guerre;
     Calcul *_jeu_calcul;
-    QTimer *_m_timer; // timer jeu_guerre
-
 
     void mode1();
 
